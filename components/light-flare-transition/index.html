@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Light-flare transition</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── PROPS — the skill edits this per use ── -->
+    <script>
+      window.FLARE_PROPS = {
+        direction: "lr", // "lr" | "rl" | "center"
+        duration: 0.5, // seconds for the whole sweep
+        intensity: 1.0, // 0.5 = subtle, 1 = default, 1.6 = strong bloom
+      };
+    </script>
+
+    <!-- duration is overwritten by PROPS.duration at runtime -->
+    <div
+      id="root"
+      data-composition-id="light-flare-transition"
+      data-start="0"
+      data-duration="0.5"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- Shot B (revealed underneath) — replace with the incoming scene -->
+      <div class="shot shot-b clip" data-start="0" data-duration="0.5" data-track-index="1">
+        <span class="shot-label">incoming<br /><span class="serif">shot B</span></span>
+      </div>
+      <!-- Shot A (on top, wiped away) — replace with the outgoing scene -->
+      <div class="shot shot-a clip" id="shot-a" data-start="0" data-duration="0.5" data-track-index="2">
+        <span class="shot-label">outgoing<br /><span class="serif">shot A</span></span>
+      </div>
+      <!-- The flare overlay -->
+      <div class="flare clip" id="flare" data-start="0" data-duration="0.5" data-track-index="9"></div>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

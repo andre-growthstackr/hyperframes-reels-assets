@@ -1,0 +1,82 @@
+/* metric-card — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --ink: #0a0a0a;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* mode-driven (set by animation.js) */
+  --bg: var(--canvas);
+  --fg: var(--white);
+  --fg-muted: var(--offwhite);
+  --cell-bg: rgba(255, 255, 255, 0.04);
+  --cell-border: var(--slate);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.tnum { font-variant-numeric: tabular-nums; }
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+
+#root { position: absolute; inset: 0; }
+.backdrop {
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 80% at 50% 0%, #0b0c0e 0%, var(--bg) 60%);
+}
+body.light .backdrop {
+  background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--cream) 60%);
+}
+
+.mc-wrap {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 84px;
+  z-index: 3;
+}
+
+.mc-head { margin-bottom: 64px; }
+.mc-eyebrow {
+  font-size: 34px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--coral); margin-bottom: 22px;
+}
+.mc-title {
+  font-size: 96px; font-weight: 800; line-height: 0.98;
+  letter-spacing: -0.03em; color: var(--fg);
+}
+
+.mc-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 36px;
+}
+.mc-cell {
+  background: var(--cell-bg);
+  border: 1px solid var(--cell-border);
+  border-radius: 28px;
+  padding: 56px 48px;
+  display: flex; flex-direction: column; gap: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+.mc-value {
+  font-size: 132px; font-weight: 800; line-height: 0.9;
+  letter-spacing: -0.04em; color: var(--fg);
+}
+.mc-cell.hero .mc-value { color: var(--coral); }
+.mc-label {
+  font-size: 40px; font-weight: 500; color: var(--fg-muted); opacity: 0.85;
+}
+
+/* 5+ cells → tighter type so 2x3 fits */
+.mc-grid.dense .mc-cell { padding: 44px 40px; }
+.mc-grid.dense .mc-value { font-size: 104px; }
+.mc-grid.dense .mc-label { font-size: 34px; }

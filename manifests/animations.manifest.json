@@ -1,0 +1,19 @@
+{
+  "_comment": "Finished HyperFrames animations / scenes to drop into a video, or specific effects to pull. Heavy scene files + preview MP4s live in this repo. Format matches the skill's references/library/animations.manifest.json.",
+  "library": "animations",
+  "animations": [
+    {
+      "id": "logo-reveal-coral",
+      "type": "animation",
+      "name": "Logo reveal (coral)",
+      "path": "animations/logo-reveal-coral/",
+      "preview": "animations/logo-reveal-coral/preview.mp4",
+      "scene": "animations/logo-reveal-coral/scene.html",
+      "tags": ["logo", "reveal", "intro", "brand"],
+      "best_for": ["tool/brand name reveal", "intro"],
+      "reskinnable": true,
+      "duration_s": 1.3,
+      "notes": "Rising-bars mark + growthstackr wordmark scale in with soft-impact settle, coral glow bloom, and the signature flare sweep. Swap the wordmark for the logo image (brandTokens.logoUrl) and re-skin via frame.md. Sync the flare peak (~0.66s) to a soft impact SFX."
+    }
+  ]
+}

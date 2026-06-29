@@ -1,0 +1,17 @@
+{
+  "_comment": "Example storyboards (director plans) the agent can follow as a template for a given video type. Heavy frames live in this repo; this indexes them. Format matches the skill's references/library/storyboards.manifest.json.",
+  "library": "storyboards",
+  "storyboards": [
+    {
+      "id": "tool-breakdown-45s",
+      "type": "storyboard",
+      "name": "Tool breakdown (45s)",
+      "path": "storyboards/tool-breakdown-45s/",
+      "preview": "storyboards/tool-breakdown-45s/frames/00_hook.png",
+      "tags": ["tool", "breakdown", "saas", "demo", "proof"],
+      "best_for": ["explaining one tool", "feature + proof + CTA"],
+      "structure": ["hook", "tool intro", "source diagram", "UI proof", "metric card", "CTA"],
+      "notes": "Vayne-style arc: kinetic hook -> claude-prompt-box intro -> source diagram -> UI proof -> metric-card -> talking-head CTA, ~45s. Each scene names the library asset to reuse (claude-prompt-box, metric-card, light-flare-transition, logo-reveal-coral). Static key frames in frames/."
+    }
+  ]
+}

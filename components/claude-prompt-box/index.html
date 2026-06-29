@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sv" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Claude Code prompt box</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── PROPS — the skill edits this per video ── -->
+    <script>
+      window.PROMPT_BOX_PROPS = {
+        mode: "dark", // "dark" | "light"
+        accentColor: "#ff5b49", // overrides --coral
+        appName: "claude", // label in the header
+        promptText: "Bygg ett personaliserat outbound-system i skala", // types out
+        cwd: "~/growthstackr", // small path hint in the header
+      };
+    </script>
+
+    <div
+      id="root"
+      data-composition-id="claude-prompt-box"
+      data-start="0"
+      data-duration="3.6"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="backdrop"></div>
+
+      <div class="pb-wrap clip" data-start="0" data-duration="3.6" data-track-index="3">
+        <div class="pb-box">
+          <div class="pb-header">
+            <span class="pb-dot"></span>
+            <span class="pb-app" id="pb-app"></span>
+            <span class="pb-cwd" id="pb-cwd"></span>
+          </div>
+          <div class="pb-body">
+            <span class="pb-caret-symbol">&gt;</span>
+            <span class="pb-text" id="pb-text"></span><span class="pb-cursor" id="pb-cursor"></span>
+          </div>
+          <div class="pb-footer">
+            <span class="pb-hint">esc to interrupt</span>
+            <span class="pb-send" id="pb-send">↵ send</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

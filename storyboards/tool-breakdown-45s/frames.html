@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <title>tool-breakdown-45s — key frames</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <style>
+      :root {
+        --canvas: #050505; --charcoal: #1c1f22; --slate: #344054;
+        --offwhite: #f0f0f0; --white: #ffffff; --coral: #ff5b49; --violet: #7f56d9;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #000; font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+      .frame {
+        position: relative; width: 1080px; height: 1920px; overflow: hidden;
+        background: radial-gradient(120% 80% at 50% 0%, #0b0c0e 0%, var(--canvas) 60%);
+      }
+      .serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+      .tnum { font-variant-numeric: tabular-nums; }
+      /* content lives in the top zone (~55%); the caption pill sits at the seam below it */
+      .pad { position: absolute; left: 0; top: 0; width: 1080px; height: 1010px; display: flex; flex-direction: column; justify-content: center; padding: 110px 84px; }
+      .center { align-items: center; text-align: center; }
+
+      /* shared caption pill */
+      .pill {
+        position: absolute; left: 50%; top: 1010px; transform: translateX(-50%);
+        background: rgba(28,31,34,0.85); border-radius: 20px; padding: 18px 36px;
+        font-size: 60px; font-weight: 800; color: var(--white); white-space: nowrap;
+      }
+      .pill.coral { background: var(--coral); }
+
+      /* 00 hook */
+      .eyebrow { font-size: 34px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--coral); margin-bottom: 24px; }
+      .hook h1 { font-size: 116px; font-weight: 800; line-height: .98; letter-spacing: -.03em; color: var(--white); }
+      .hook .u { display: block; height: 12px; width: 460px; border-radius: 8px; background: var(--coral); margin-top: 18px; }
+
+      /* 01 prompt box */
+      .box { width: 100%; background: #0e1012; border: 1px solid #23272c; border-radius: 28px; box-shadow: 0 40px 100px rgba(0,0,0,.55); }
+      .bx-h { display: flex; align-items: center; gap: 20px; padding: 36px 44px; border-bottom: 1px solid #23272c; }
+      .bx-h .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--coral); }
+      .bx-h .app { font-size: 40px; font-weight: 700; color: #fff; }
+      .bx-h .cwd { margin-left: auto; font-size: 32px; color: #8b939b; }
+      .bx-b { padding: 56px 44px; min-height: 320px; font-size: 56px; font-weight: 500; color: #fff; display: flex; gap: 20px; }
+      .bx-b .c { color: var(--coral); font-weight: 800; }
+      .bx-f { display: flex; padding: 32px 44px; border-top: 1px solid #23272c; }
+      .bx-f .send { margin-left: auto; font-size: 32px; font-weight: 700; color: #fff; background: var(--coral); padding: 16px 32px; border-radius: 14px; }
+
+      /* 02 diagram */
+      .node { width: 240px; height: 240px; border-radius: 32px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; }
+      .node.hub { background: var(--coral); font-size: 44px; }
+      .node.src { background: var(--charcoal); border: 1px solid var(--slate); font-size: 40px; }
+      .diagram { align-items: center; gap: 80px; }
+      .row { display: flex; align-items: center; gap: 60px; }
+      .link { width: 120px; height: 6px; background: linear-gradient(90deg, var(--violet), var(--coral)); border-radius: 3px; }
+
+      /* 03 UI proof */
+      .ui { width: 100%; background: #0e1012; border: 1px solid #23272c; border-radius: 24px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.55); }
+      .ui .bar { display: flex; gap: 14px; padding: 28px 32px; border-bottom: 1px solid #23272c; }
+      .ui .bar i { width: 22px; height: 22px; border-radius: 50%; background: #2a2e33; display: inline-block; }
+      .ui table { width: 100%; border-collapse: collapse; font-size: 34px; color: #f0f0f0; }
+      .ui td, .ui th { text-align: left; padding: 26px 32px; border-bottom: 1px solid #1b1e22; }
+      .ui th { color: #8b939b; font-weight: 700; font-size: 28px; text-transform: uppercase; letter-spacing: .08em; }
+      .ui tr.hl td { background: rgba(255,91,73,.12); }
+
+      /* 04 metric card */
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+      .cell { background: rgba(255,255,255,.04); border: 1px solid var(--slate); border-radius: 28px; padding: 56px 48px; }
+      .cell .v { font-size: 132px; font-weight: 800; line-height: .9; letter-spacing: -.04em; color: #fff; }
+      .cell.hero .v { color: var(--coral); }
+      .cell .l { font-size: 40px; font-weight: 500; color: var(--offwhite); opacity: .85; margin-top: 18px; }
+
+      /* 05 CTA */
+      .cta-head { width: 1080px; height: 100%; background: linear-gradient(180deg, #15171a 0%, #0a0b0d 100%); position: absolute; inset: 0; }
+      .cta-grain { position: absolute; inset: 0; background: radial-gradient(70% 50% at 50% 40%, rgba(127,86,217,.18), transparent 70%); }
+      .silhouette { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 560px; height: 900px; border-radius: 280px 280px 0 0; background: linear-gradient(180deg, #2a2e33, #15171a); }
+    </style>
+  </head>
+  <body>
+    <!-- 00 HOOK -->
+    <div class="frame" id="f0">
+      <div class="pad hook">
+        <div class="eyebrow">AI OUTBOUND</div>
+        <h1>Skriver personliga mail<br />åt dig <span class="serif" style="color:var(--coral)">medan du sover</span><span class="u"></span></h1>
+      </div>
+      <div class="pill">medan du sover</div>
+    </div>
+
+    <!-- 01 PROMPT BOX -->
+    <div class="frame" id="f1">
+      <div class="pad">
+        <div class="box">
+          <div class="bx-h"><span class="dot"></span><span class="app">claude</span><span class="cwd">~/growthstackr</span></div>
+          <div class="bx-b"><span class="c">&gt;</span><span>Bygg ett personaliserat outbound-system i skala</span></div>
+          <div class="bx-f"><span style="font-size:30px;color:#8b939b">esc to interrupt</span><span class="send">↵ send</span></div>
+        </div>
+      </div>
+      <div class="pill coral">en enda prompt</div>
+    </div>
+
+    <!-- 02 DIAGRAM -->
+    <div class="frame" id="f2">
+      <div class="pad diagram center">
+        <div class="node hub">SYSTEM</div>
+        <div class="row">
+          <div class="node src">LinkedIn</div>
+          <div class="link"></div>
+          <div class="node src" style="font-size:34px">namn · roll<br />företag</div>
+        </div>
+      </div>
+      <div class="pill">från LinkedIn</div>
+    </div>
+
+    <!-- 03 UI PROOF -->
+    <div class="frame" id="f3">
+      <div class="pad">
+        <div class="ui">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <table>
+            <tr><th>Namn</th><th>Företag</th><th>Status</th></tr>
+            <tr><td>Anna L.</td><td>Northbeam</td><td>✓ verifierad</td></tr>
+            <tr class="hl"><td>Erik S.</td><td>Voltway</td><td>✓ städad</td></tr>
+            <tr><td>Maria K.</td><td>Finhaus</td><td>✓ dedupad</td></tr>
+            <tr><td>Johan P.</td><td>Klarvik</td><td>✓ verifierad</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="pill">städar datan</div>
+    </div>
+
+    <!-- 04 METRIC CARD -->
+    <div class="frame" id="f4">
+      <div class="pad">
+        <div class="eyebrow">RESULTAT</div>
+        <div class="grid" style="margin-top:24px">
+          <div class="cell hero"><div class="v tnum">[din siffra]</div><div class="l">svarsfrekvens</div></div>
+          <div class="cell"><div class="v tnum">[din siffra]</div><div class="l">profiler / sökning</div></div>
+          <div class="cell"><div class="v tnum">[din siffra]</div><div class="l">timmar sparade</div></div>
+          <div class="cell"><div class="v tnum">[din siffra]</div><div class="l">snabbare</div></div>
+        </div>
+      </div>
+      <div class="pill coral">[din siffra] %</div>
+    </div>
+
+    <!-- 05 CTA -->
+    <div class="frame" id="f5">
+      <div class="cta-head"></div>
+      <div class="cta-grain"></div>
+      <div class="silhouette"></div>
+      <div class="pad center" style="justify-content:flex-start; padding-top:300px">
+        <h1 style="font-size:96px;font-weight:800;color:#fff;line-height:1.0">Skriv <span class="serif" style="color:var(--coral)">"set up"</span><br />i en kommentar</h1>
+      </div>
+      <div class="pill coral">skriv "set up"</div>
+    </div>
+  </body>
+</html>

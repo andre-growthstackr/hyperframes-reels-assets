@@ -1,0 +1,42 @@
+{
+  "_comment": "Reusable component code (HTML/CSS/JS) the agent pulls and re-skins via frame.md. Heavy source lives in this repo; this is the index. Add one entry per component you promote. Format matches the skill's references/library/components.manifest.json.",
+  "library": "components",
+  "components": [
+    {
+      "id": "metric-card",
+      "type": "component",
+      "name": "Metric card (2x2 / 2x3 grid)",
+      "path": "components/metric-card/",
+      "preview": "components/metric-card/preview.png",
+      "tags": ["metric", "number", "stat", "proof", "result"],
+      "best_for": ["metric beats", "stat reveals"],
+      "reskinnable": true,
+      "props": ["values", "labels", "accentColor", "mode", "heroIndex", "eyebrow", "title"],
+      "notes": "Staggered pop-in + count-up; coral accent on the hero number. Numeric values count up, placeholders like [din siffra] stay static. 4 values = 2x2, 5-6 = 2x3. Never fabricate the number."
+    },
+    {
+      "id": "claude-prompt-box",
+      "type": "component",
+      "name": "Claude Code prompt box",
+      "path": "components/claude-prompt-box/",
+      "preview": "components/claude-prompt-box/preview.png",
+      "tags": ["claude", "prompt", "terminal", "code", "ui"],
+      "best_for": ["showing a prompt being typed", "tool intro for Claude Code"],
+      "reskinnable": true,
+      "props": ["promptText", "accentColor", "mode", "appName", "cwd"],
+      "notes": "Dark prompt box with a deterministic, frame-seekable typing animation, coral caret/cursor/send pill. Re-skin per video with frame.md."
+    },
+    {
+      "id": "light-flare-transition",
+      "type": "component",
+      "name": "Light-flare transition",
+      "path": "components/light-flare-transition/",
+      "preview": "components/light-flare-transition/preview.mp4",
+      "tags": ["transition", "flare", "light-sweep", "signature"],
+      "best_for": ["between sections", "big reveals"],
+      "reskinnable": false,
+      "props": ["direction", "duration", "intensity"],
+      "notes": "The signature transition. Soft warm sweep; the incoming shot is revealed at the flare's peak. Sync the peak to an SFX swoosh. 3-6 per short."
+    }
+  ]
+}

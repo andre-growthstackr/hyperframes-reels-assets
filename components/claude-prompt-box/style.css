@@ -1,0 +1,86 @@
+/* claude-prompt-box — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  --bg: var(--canvas);
+  --box-bg: #0e1012;
+  --box-border: #23272c;
+  --fg: var(--white);
+  --fg-muted: #8b939b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { position: absolute; inset: 0; }
+.backdrop {
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 80% at 50% 0%, #0b0c0e 0%, var(--bg) 60%);
+}
+body.light { --bg: var(--cream); --box-bg: #ffffff; --box-border: #e4e7ec; --fg: #0a0a0a; --fg-muted: #667085; }
+body.light .backdrop { background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--cream) 60%); }
+
+.pb-wrap {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 96px 72px;
+  z-index: 3;
+}
+
+.pb-box {
+  width: 100%;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: 28px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+.pb-header {
+  display: flex; align-items: center; gap: 20px;
+  padding: 36px 44px;
+  border-bottom: 1px solid var(--box-border);
+}
+.pb-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--coral); flex: 0 0 auto; }
+.pb-app { font-size: 40px; font-weight: 700; color: var(--fg); }
+.pb-cwd { margin-left: auto; font-size: 32px; font-weight: 500; color: var(--fg-muted); }
+
+.pb-body {
+  padding: 56px 44px;
+  min-height: 360px;
+  display: flex; align-items: flex-start; gap: 20px;
+  font-size: 58px; font-weight: 500; line-height: 1.25;
+}
+.pb-caret-symbol { color: var(--coral); font-weight: 800; flex: 0 0 auto; }
+.pb-text { color: var(--fg); white-space: pre-wrap; }
+.pb-cursor {
+  display: inline-block; width: 26px; height: 64px;
+  background: var(--coral); margin-left: 6px; transform: translateY(8px);
+}
+
+.pb-footer {
+  display: flex; align-items: center;
+  padding: 32px 44px;
+  border-top: 1px solid var(--box-border);
+}
+.pb-hint { font-size: 30px; font-weight: 500; color: var(--fg-muted); }
+.pb-send {
+  margin-left: auto;
+  font-size: 32px; font-weight: 700; color: var(--white);
+  background: var(--coral);
+  padding: 16px 32px; border-radius: 14px;
+}

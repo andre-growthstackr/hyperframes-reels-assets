@@ -50,9 +50,9 @@ Point the skill at this repo in `shortform-video.config.json`:
 
 ```json
 "assetLibrary": {
-  "repo": "https://github.com/<you>/growthstackr-video-assets",
+  "repo": "https://github.com/andre-growthstackr/hyperframes-reels-assets",
   "branch": "main",
-  "rawBase": "https://raw.githubusercontent.com/<you>/growthstackr-video-assets/main",
+  "rawBase": "https://raw.githubusercontent.com/andre-growthstackr/hyperframes-reels-assets/main",
   "localClone": "~/video-assets"
 }
 ```

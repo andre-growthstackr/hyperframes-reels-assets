@@ -23,7 +23,7 @@
       "tags": ["claude", "prompt", "terminal", "code", "ui"],
       "best_for": ["showing a prompt being typed", "tool intro for Claude Code"],
       "reskinnable": true,
-      "props": ["promptText", "accentColor", "mode", "ground", "appName", "cwd"],
+      "props": ["promptText", "accentColor", "mode", "ground", "appName", "appLogo", "cwd"],
       "notes": "Dark prompt box with a deterministic, frame-seekable typing animation, coral caret/cursor/send pill. Re-skin per video with frame.md."
     },
     {
@@ -83,7 +83,7 @@
       "tags": ["browser", "window", "screenshot", "ui", "dashboard", "website", "chrome"],
       "best_for": ["holding a SaaS UI / dashboard capture", "website showcase beats", "product screenshot reveals"],
       "reskinnable": true,
-      "props": ["mode", "ground", "url", "title", "imageSrc", "accentColor"],
+      "props": ["mode", "ground", "url", "favicon", "title", "imageSrc", "accentColor"],
       "notes": "Rounded browser window with muted traffic-light dots and a pill address bar; slides up + scales in, then a slow Ken Burns push-in on the content. imageSrc fills the content area (object-fit cover, top-anchored), empty falls back to a neutral placeholder. The single coral accent is the tiny secure dot in the address bar."
     },
     {
@@ -108,7 +108,7 @@
       "best_for": ["where-the-data-flows beats", "tool/stack explainers", "source-to-output steps"],
       "reskinnable": true,
       "props": ["nodes", "heroIndex", "orientation", "accentColor", "mode", "ground"],
-      "notes": "Node-flow diagram (LinkedIn → Vayne → Spreadsheet); nodes stagger pop-in, connectors draw between them, coral accent on the hero (tool) node only. 2–4 nodes, vertical default or horizontal. Never fabricate node labels."
+      "notes": "Node-flow diagram (LinkedIn → Vayne → Spreadsheet); nodes stagger pop-in, connectors draw between them, coral accent on the hero (tool) node only. 2–4 nodes, vertical default or horizontal. Each node takes an optional `icon` (tool id from logos.manifest) that shows the real tool logo above the label. Never fabricate node labels."
     },
     {
       "id": "cta-scene",
@@ -121,6 +121,18 @@
       "reskinnable": true,
       "props": ["closerLine", "closerAccentWord", "ctaLabel", "kicker", "accentColor", "mode", "ground"],
       "notes": "Centered closer line (≤5 words) with one optional Instrument Serif italic WHITE accent word over a giant coral pill CTA (the frame's single coral instance) on a dark ground, plus a centered hairline; staggered reveal then pill overshoot then hairline draw, gentle push-in. Never fabricate copy."
+    },
+    {
+      "id": "platform-logo-card",
+      "type": "component",
+      "name": "Platform logo card (logo flash)",
+      "path": "components/platform-logo-card/",
+      "preview": "components/platform-logo-card/preview.png",
+      "tags": ["logo-flash", "logo", "tool", "brand", "scene", "centered", "identity"],
+      "best_for": ["flashing one named tool's logo (~0.5-1s) when a tool is mentioned", "platform/stack reveal beat", "brand or integration name-drop moment"],
+      "reskinnable": true,
+      "props": ["logo", "label", "ground", "mode", "accentColor"],
+      "notes": "Reveals ONE tool logo big + centered on a brand ground with an optional Inter label and a single coral underline; the logo id maps to a local logos/<logo>.svg (18 tool marks bundled). Flash-in ~0.5s + gentle push-in."
     }
   ]
 }

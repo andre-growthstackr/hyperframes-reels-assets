@@ -74,6 +74,12 @@ body.light .backdrop {
 .wf-flow.vertical .wf-node { width: 640px; }
 .wf-flow.horizontal .wf-node { min-width: 260px; }
 
+/* optional per-node tool logo — part of the node card, animates in with the pop-in */
+.wf-logo {
+  width: 84px; height: 84px; object-fit: contain;
+  margin: 0 auto 20px; display: block;
+}
+
 .wf-label {
   font-size: 88px; font-weight: 800; line-height: 0.98;
   letter-spacing: -0.03em; color: var(--fg);
@@ -117,6 +123,7 @@ body.light .backdrop {
 
 /* 4 nodes → tighter type + shorter connectors so it fits 1920 */
 .wf-flow.dense .wf-node { padding: 40px 48px; }
+.wf-flow.dense .wf-logo { width: 64px; height: 64px; margin-bottom: 14px; }
 .wf-flow.dense .wf-label { font-size: 72px; }
 .wf-flow.dense .wf-sub { font-size: 32px; }
 .wf-flow.dense.vertical .wf-connector { height: 92px; }

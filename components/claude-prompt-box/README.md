@@ -18,6 +18,7 @@ Edit `window.PROMPT_BOX_PROPS` in `index.html`:
 | `ground`      | string | scene background: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `accentColor` | string | hex; overrides `--coral` (dot, caret, cursor, send pill) |
 | `appName`     | string | header label (default `"claude"`) |
+| `appLogo`     | string | optional tool id shown as a logo before the app name (default `"claude"`); `""` hides it |
 | `promptText`  | string | the text that types out, char by char |
 | `cwd`         | string | small path hint at the right of the header |
 

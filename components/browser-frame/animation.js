@@ -30,6 +30,16 @@
   document.getElementById("bf-url").textContent = P.url || "";
   document.getElementById("bf-title").textContent = P.title || "";
 
+  // ── optional address-bar favicon (neutral brand mark, left of the url) ──
+  if (P.favicon) {
+    const fav = document.createElement("img");
+    fav.className = "bf-favicon";
+    fav.src = `logos/${P.favicon}.svg`;
+    fav.alt = "";
+    const urlEl = document.getElementById("bf-url");
+    urlEl.parentNode.insertBefore(fav, urlEl);
+  }
+
   const content = document.getElementById("bf-content");
   const img = document.getElementById("bf-image");
   if (P.imageSrc) {

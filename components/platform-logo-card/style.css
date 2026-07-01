@@ -1,0 +1,75 @@
+/* platform-logo-card — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --ink: #0a0a0a;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* mode-driven (set by animation.js) */
+  --bg: var(--canvas);
+  --fg: var(--white);
+  --fg-muted: var(--offwhite);
+  --ground-url: none; /* scene background image; set by animation.js from the `ground` prop */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.tnum { font-variant-numeric: tabular-nums; }
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+
+#root { position: absolute; inset: 0; }
+.backdrop {
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 80% at 50% 0%, #0b0c0e 0%, var(--bg) 60%);
+}
+body.light .backdrop {
+  background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--cream) 60%);
+}
+/* scene ground image (brand backgrounds) — replaces the radial gradient when set */
+.backdrop.has-ground {
+  background: var(--ground-url) center / cover no-repeat, var(--bg);
+}
+
+.plc-wrap {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 84px;
+  z-index: 3;
+}
+
+.plc-logo {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.4));
+}
+
+.plc-label {
+  margin-top: 64px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 60px; font-weight: 700; letter-spacing: -0.01em;
+  line-height: 1; color: var(--fg);
+}
+.plc-label:empty { display: none; }
+
+.plc-underline {
+  margin-top: 40px;
+  width: 132px; height: 6px;
+  background: var(--coral);
+  border-radius: 999px;
+  transform-origin: center;
+}

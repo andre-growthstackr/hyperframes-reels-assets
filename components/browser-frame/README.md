@@ -19,6 +19,7 @@ Edit `window.BROWSER_FRAME_PROPS` in `index.html`:
 | `mode`        | string | `"dark"` (default, lifted dark surface) or `"light"` (white window on cream) |
 | `ground`      | string | scene background behind the window: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `url`         | string | address-bar text; rendered muted |
+| `favicon`     | string | optional tool id (from `assets/logos/tools/logos.manifest.json`) shown as a favicon left of the url; `""` hides it |
 | `title`       | string | optional window title beside the traffic lights; hidden when empty |
 | `imageSrc`    | string | screenshot / UI capture; fills the content area (`object-fit: cover`, top-anchored). Empty → neutral `screenshot · UI` placeholder |
 | `accentColor` | string | hex; overrides `--coral` for the single secure dot |

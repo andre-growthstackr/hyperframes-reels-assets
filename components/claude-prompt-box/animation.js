@@ -16,6 +16,16 @@
     if (bgEl) bgEl.classList.add("has-ground");
   }
 
+  // ── header app logo (local tool logo, deterministic) ──
+  if (P.appLogo) {
+    const appEl = document.getElementById("pb-app");
+    const logo = document.createElement("img");
+    logo.className = "pb-applogo";
+    logo.src = `logos/${P.appLogo}.svg`;
+    logo.alt = "";
+    appEl.parentNode.insertBefore(logo, appEl);
+  }
+
   document.getElementById("pb-app").textContent = P.appName || "claude";
   document.getElementById("pb-cwd").textContent = P.cwd || "";
   document.getElementById("pb-send").textContent = "↵ send";

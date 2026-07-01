@@ -37,7 +37,8 @@ growthstackr-video-assets/
 │   ├── ui-highlight/          # spotlight overlay: dim + coral rect + label/arrow
 │   ├── workflow-diagram/      # source -> tool -> output node flow
 │   ├── metric-card/           # 2x2 / 2x3 big-number grid with count-up
-│   ├── claude-prompt-box/     # typed Claude Code prompt box
+│   ├── platform-logo-card/    # logo-flash: one tool logo, centered, coral accent
+│   ├── claude-prompt-box/     # typed Claude Code prompt box (Claude logo in header)
 │   ├── cta-scene/             # closer line + giant coral pill CTA
 │   └── light-flare-transition/ # signature light transition
 ├── animations/                # finished HyperFrames scenes + preview.mp4

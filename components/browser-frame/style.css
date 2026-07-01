@@ -88,6 +88,12 @@ body.light .backdrop {
   background: var(--coral);
   box-shadow: 0 0 14px var(--coral);
 }
+/* optional address-bar favicon — a neutral brand mark left of the url (not a second accent) */
+.bf-favicon {
+  flex: none;
+  width: 30px; height: 30px;
+  object-fit: contain;
+}
 .bf-url {
   font-size: 30px; font-weight: 500;
   color: var(--fg-muted); opacity: 0.72;

@@ -43,6 +43,14 @@
     // node card
     const node = document.createElement("div");
     node.className = "wf-node" + (i === heroIndex ? " hero" : "");
+    // optional tool logo (local, deterministic — no network). Prepended above the label.
+    if (n && typeof n.icon === "string" && n.icon) {
+      const logo = document.createElement("img");
+      logo.className = "wf-logo";
+      logo.src = "logos/" + n.icon + ".svg";
+      logo.alt = "";
+      node.appendChild(logo);
+    }
     const label = document.createElement("div");
     label.className = "wf-label";
     label.textContent = n && n.label ? n.label : "";

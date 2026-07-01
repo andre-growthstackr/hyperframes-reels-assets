@@ -10,12 +10,21 @@ Everything is built for **temporal** aesthetics (maximise the frame, one idea at
 motion carries the info) — not spatial (a webpage). See [`frame.md`](frame.md) for the full
 aesthetic spec and brand tokens. Every asset re-skins against `frame.md`.
 
+[`frame.md`](frame.md) is the composed **frame pack** (video-first spec generated from
+`design.md`): YAML component tokens, eight frame treatments, and a pre-render self-audit, with a
+repo-specific **HyperFrames build contract & 9:16 video conventions** section appended at the end
+(the CSS re-skin variables, caption-pill signature, track-index convention, and composition
+contract that assets here depend on). [`frame-showcase.html`](frame-showcase.html) is a
+**preview-only** storyboard contact sheet of those treatments — open it in a browser to review the
+look; do **not** include it in a HyperFrames project.
+
 ## Structure
 
 ```
 growthstackr-video-assets/
 ├── README.md                  # this file
-├── frame.md                   # GrowthStackr video aesthetic (the re-skin source of truth)
+├── frame.md                   # composed frame pack + 9:16 build contract (re-skin source of truth)
+├── frame-showcase.html        # preview-only storyboard contact sheet of the frame treatments
 ├── manifests/                 # the index the skill reads (source of truth for what exists)
 │   ├── components.manifest.json
 │   ├── storyboards.manifest.json

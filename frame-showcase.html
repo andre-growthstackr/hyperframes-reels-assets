@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Claude Leads · frame-showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ── Tokens (mirror frame.md colors + reading atoms verbatim) ───────────── */
+  :root{
+    --bg:#050505;
+    --bg-soft:#0e0f10;
+    --bg-card:#121416;
+    --bg-elevated:#1c1f22;
+    --fg:#ffffff;
+    --fg-muted:#b0b0b0;
+    --fg-subtle:#9ca3af;
+    --border:rgba(255,255,255,0.08);
+    --border-strong:rgba(255,255,255,0.16);
+    --accent:#ff5b49;
+    --accent-hover:#ff7261;
+    --accent-soft:rgba(255,91,73,0.12);
+    --accent-glow:rgba(255,91,73,0.32);
+    --secondary:#7f56d9;
+
+    --radius-card:1rem;
+    --radius-pill:9999px;
+
+    --shadow-soft:0 1px 2px rgba(0,0,0,0.3);
+    --shadow-card:0 4px 16px -4px rgba(0,0,0,0.4);
+    --shadow-elevated:0 12px 32px -8px rgba(0,0,0,0.5);
+    --shadow-overlay:0 24px 64px -16px rgba(0,0,0,0.6);
+
+    --font-sans:"Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display:"Instrument Serif", ui-serif, Georgia, serif;
+    --font-hand:"Caveat", ui-serif, cursive;
+
+    /* Gallery ground for the contact sheet — a soft neutral deeper than bg */
+    --gallery:#0a0a0b;
+    --gallery-ink:#e7e7ea;
+    --gallery-rule:rgba(255,255,255,0.09);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{background:var(--gallery)}
+  body{
+    background:var(--gallery);
+    color:var(--gallery-ink);
+    font-family:var(--font-sans);
+    font-feature-settings:'ss01','cv11';
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* ── Cover: full-bleed 16:9, first element in <body> ────────────────────── */
+  .cover{
+    width:100vw;
+    aspect-ratio:16/9;
+    container-type:size;
+    container-name:frame;
+    background:var(--bg);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ── Doc chrome (branded) ───────────────────────────────────────────────── */
+  .doc{ max-width:1360px; margin:0 auto; padding:0 4vw }
+  .section{ padding:110px 0 40px }
+  .section + .section{ border-top:1px solid var(--gallery-rule) }
+  .section-head{
+    display:flex; align-items:baseline; gap:20px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--gallery-rule);
+    margin-bottom:44px;
+  }
+  .section-index{
+    font-family:var(--font-sans);
+    font-weight:500;
+    font-size:14px;
+    letter-spacing:0.14em;
+    color:var(--fg-subtle);
+    text-transform:uppercase;
+  }
+  .section-title{
+    font-family:var(--font-sans);
+    font-weight:500;
+    font-size:44px;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+    color:var(--fg);
+    margin:0;
+  }
+  .section-title em{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    color:var(--accent);
+  }
+  .section-tag{
+    margin-left:auto;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--fg-subtle);
+    border:1px solid var(--gallery-rule);
+    border-radius:var(--radius-pill);
+    padding:6px 12px;
+  }
+
+  /* ── Contact sheet grid ─────────────────────────────────────────────────── */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:56px 40px;
+  }
+  @media (max-width:1080px){ .grid{ grid-template-columns:1fr } }
+
+  .frame-cell{ display:flex; flex-direction:column; gap:14px }
+  .frame{
+    width:100%;
+    aspect-ratio:16/9;
+    container-type:size;
+    container-name:frame;
+    background:var(--bg);
+    border:1px solid var(--gallery-rule);
+    border-radius:6px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:var(--shadow-card);
+  }
+  .rail{
+    display:flex; align-items:baseline; gap:14px;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--fg-subtle);
+  }
+  .rail .idx{
+    font-variant-numeric:tabular-nums;
+    color:var(--fg-subtle);
+    min-width:20px;
+  }
+  .rail .name{ color:var(--gallery-ink); font-weight:500; letter-spacing:0.04em; text-transform:none; font-size:14px }
+  .rail .dot{ width:3px; height:3px; background:var(--gallery-rule); border-radius:50%; display:inline-block }
+  .rail .arch{ }
+  .rail .pace{ margin-left:auto; color:var(--accent); }
+
+  /* ── Component classes (mirrors frame.md `components:`) ─────────────────── */
+  /* Chrome atoms */
+  .c-hairline{ height:1px; background:var(--border); width:100%; display:block }
+  .c-hairline-strong{ height:1px; background:var(--border-strong); width:100%; display:block }
+  .c-eyebrow-label{
+    font:500 1.15cqw/1.2 var(--font-sans);
+    color:var(--fg-subtle);
+    letter-spacing:0.06cqw;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  /* Buttons */
+  .c-button-primary{
+    background:var(--accent); color:var(--fg);
+    border:0; border-radius:var(--radius-pill);
+    padding:12px 22px; box-shadow:var(--shadow-soft);
+    font:500 16px/1 var(--font-sans);
+    white-space:nowrap;
+  }
+  .c-button-primary-giant{
+    background:var(--accent); color:var(--fg);
+    border:0; border-radius:var(--radius-pill);
+    padding:2.2cqw 5.4cqw; box-shadow:var(--shadow-soft);
+    font:500 8.4cqw/1.06 var(--font-sans);
+    letter-spacing:-0.28cqw;
+    white-space:nowrap;
+  }
+  .c-button-secondary{
+    background:transparent; color:var(--fg);
+    border:1px solid var(--border-strong); border-radius:var(--radius-pill);
+    padding:12px 22px;
+    font:500 16px/1 var(--font-sans);
+    white-space:nowrap;
+  }
+  /* Pills */
+  .c-price-pill-recommended{
+    background:var(--accent); color:var(--fg);
+    border-radius:var(--radius-pill);
+    padding:6px 12px;
+    font:500 1.15cqw/1.2 var(--font-sans);
+    letter-spacing:0.06cqw; text-transform:uppercase;
+    white-space:nowrap;
+    box-shadow:var(--shadow-soft);
+  }
+  .c-tag-neutral{
+    background:var(--accent-soft); color:var(--accent);
+    border-radius:var(--radius-pill);
+    padding:4px 10px;
+    font:500 1.05cqw/1.2 var(--font-sans);
+    letter-spacing:0.06cqw; text-transform:uppercase;
+    white-space:nowrap;
+    display:inline-block;
+  }
+  /* Cards */
+  .c-card-hairline{
+    background:var(--bg-card); color:var(--fg);
+    border:1px solid var(--border); border-radius:var(--radius-card);
+    padding:2.4cqw; box-shadow:var(--shadow-card);
+  }
+  .c-card-elevated{
+    background:var(--bg-elevated); color:var(--fg);
+    border:1px solid var(--border-strong); border-radius:var(--radius-card);
+    padding:2.4cqw; box-shadow:var(--shadow-elevated);
+  }
+  .c-tier-card-recommended{
+    background:var(--bg-elevated); color:var(--fg);
+    border:1px solid var(--accent); border-radius:var(--radius-card);
+    padding:2.6cqw; box-shadow:var(--shadow-elevated);
+    position:relative;
+  }
+  .c-guarantee-row{
+    background:var(--bg-soft); color:var(--fg-muted);
+    border:1px solid var(--border); border-radius:var(--radius-card);
+    padding:1.8cqw 2.4cqw;
+  }
+  /* Logo chip */
+  .c-logo-chip{
+    background:var(--bg-card); color:var(--fg-muted);
+    border:1px solid var(--border); border-radius:var(--radius-pill);
+    padding:0.9cqw 1.8cqw;
+    font:500 1.5cqw/1 var(--font-sans);
+    white-space:nowrap;
+    display:inline-flex; align-items:center; gap:0.8cqw;
+  }
+  .c-logo-chip::before{
+    content:""; width:0.9cqw; height:0.9cqw; border-radius:50%;
+    background:var(--fg-subtle); opacity:0.4;
+  }
+  /* Stat cell */
+  .c-stat-cell{
+    color:var(--fg);
+    font:500 6.2cqw/0.94 var(--font-sans);
+    letter-spacing:-0.22cqw;
+    font-feature-settings:'ss01','cv11';
+    position:relative;
+  }
+  .c-stat-cell-label{
+    font:500 1.15cqw/1.2 var(--font-sans);
+    color:var(--fg-subtle);
+    letter-spacing:0.06cqw; text-transform:uppercase;
+    margin-top:1.2cqw;
+    white-space:nowrap;
+  }
+  /* Pin dot */
+  .c-pin-dot{
+    width:0.7cqw; height:0.7cqw; border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 0.6cqw var(--accent-soft);
+    display:inline-block;
+  }
+  /* Hand note */
+  .c-hand-note{
+    font:400 2.4cqw/1.1 var(--font-hand);
+    color:var(--accent);
+  }
+
+  /* ── Frame content layer (fills the frame) ──────────────────────────────── */
+  .plate{
+    position:absolute; inset:0;
+    padding:5cqw;
+    display:flex;
+    color:var(--fg);
+  }
+  .plate.ground-soft{ background:var(--bg-soft) }
+  .plate.ground-bg{ background:var(--bg) }
+  .plate.pad-tight{ padding:3.4cqw }
+  .plate.center-both{ align-items:center; justify-content:center; text-align:center; flex-direction:column }
+  .plate.left-top{ align-items:flex-start; justify-content:flex-start; flex-direction:column }
+
+  /* ── Treatment 1: Identity Cover ────────────────────────────────────────── */
+  .t-cover .eyebrow{ margin-bottom:2.4cqw }
+  .t-cover .wordmark{
+    font:500 28cqw/0.86 var(--font-sans);
+    letter-spacing:-1.7cqw;
+    color:var(--fg);
+    padding-bottom:0.6cqw;
+    display:block;
+  }
+  .t-cover .wordmark em{
+    font-family:var(--font-display);
+    font-style:italic; font-weight:400;
+    color:var(--accent);
+    letter-spacing:-1cqw;
+  }
+  .t-cover .rule{ width:62cqw; margin-top:3.6cqw }
+
+  /* ── Treatment 2: Oversized Claim ───────────────────────────────────────── */
+  .t-claim{ padding:5cqw }
+  .t-claim .eyebrow{ margin-bottom:2.8cqw }
+  .t-claim .headline{
+    font:500 8.4cqw/1.08 var(--font-sans);
+    letter-spacing:-0.28cqw;
+    color:var(--fg);
+    max-width:78cqw;
+    padding-bottom:0.4cqw;
+  }
+  .t-claim .headline em{
+    font-family:var(--font-display);
+    font-style:italic; font-weight:400;
+    color:var(--accent);
+    letter-spacing:-0.2cqw;
+  }
+  .t-claim .rule{ width:30cqw; margin-top:3cqw }
+
+  /* ── Treatment 3: Focal Artifact — Tier Comparison ─────────────────────── */
+  .t-tier{ padding:4cqw 5cqw; flex-direction:column }
+  .t-tier .head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:2.4cqw;
+  }
+  .t-tier .title{
+    font:500 3.2cqw/1.08 var(--font-sans);
+    letter-spacing:-0.1cqw; color:var(--fg);
+  }
+  .t-tier .title em{ font-family:var(--font-display); font-style:italic; font-weight:400; color:var(--accent) }
+  .t-tier .toggle{
+    font:500 1.05cqw/1 var(--font-sans);
+    color:var(--fg-subtle);
+    border:1px solid var(--border-strong);
+    border-radius:var(--radius-pill);
+    padding:0.6cqw 1.4cqw;
+    letter-spacing:0.06cqw; text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .t-tier .row{
+    display:grid; grid-template-columns:1fr 1.2fr 1fr;
+    gap:2.2cqw; align-items:end; flex:1;
+  }
+  .t-tier .tier{
+    background:var(--bg-card); border:1px solid var(--border);
+    border-radius:var(--radius-card);
+    padding:2.2cqw;
+    display:flex; flex-direction:column; justify-content:space-between;
+    min-height:70%;
+    box-shadow:var(--shadow-card);
+  }
+  .t-tier .tier.center{
+    background:var(--bg-elevated);
+    border:1px solid var(--accent);
+    box-shadow:var(--shadow-elevated);
+    min-height:82%;
+    padding:2.6cqw;
+    transform:translateY(-2cqw);
+    position:relative;
+  }
+  .t-tier .tier .name{
+    font:500 1.15cqw/1.2 var(--font-sans);
+    color:var(--fg-subtle);
+    letter-spacing:0.06cqw; text-transform:uppercase;
+    margin-bottom:1.4cqw;
+  }
+  .t-tier .tier .price{
+    font:500 4.4cqw/1.02 var(--font-sans);
+    letter-spacing:-0.14cqw;
+    color:var(--fg);
+  }
+  .t-tier .tier .price s{ color:var(--fg-subtle); font-weight:400; margin-right:1cqw; text-decoration-thickness:1px }
+  .t-tier .tier .meta{
+    font:400 1.4cqw/1.4 var(--font-sans);
+    color:var(--fg-muted); margin-top:0.6cqw;
+  }
+  .t-tier .tier.center .pill{
+    position:absolute; top:-1.2cqw; left:50%;
+    transform:translateX(-50%);
+  }
+
+  /* ── Treatment 4: Stat Ledger ───────────────────────────────────────────── */
+  .t-ledger{ flex-direction:column; padding:5cqw }
+  .t-ledger .header{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:0.5cqw;
+  }
+  .t-ledger .top-rule{ margin:1.8cqw 0 3cqw }
+  .t-ledger .row{
+    display:grid; grid-template-columns:repeat(3, 1fr);
+    gap:4cqw;
+  }
+  .t-ledger .cell{ position:relative }
+  .t-ledger .cell .dot{
+    position:absolute; top:0.6cqw; right:0;
+  }
+  .t-ledger .bottom-rule{ margin-top:auto; margin-bottom:1cqw }
+  .t-ledger .foot{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font:400 1.4cqw/1.4 var(--font-sans);
+    color:var(--fg-subtle);
+  }
+  .t-ledger .foot em{ font-family:var(--font-display); font-style:italic; color:var(--fg-muted) }
+
+  /* ── Treatment 5: Problem Catalog ───────────────────────────────────────── */
+  .t-catalog{ flex-direction:column; padding:5cqw }
+  .t-catalog .head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:2.6cqw;
+  }
+  .t-catalog .title{
+    font:500 4.4cqw/1.08 var(--font-sans);
+    letter-spacing:-0.14cqw; color:var(--fg);
+    max-width:66cqw;
+  }
+  .t-catalog .title em{ font-family:var(--font-display); font-style:italic; font-weight:400; color:var(--accent) }
+  .t-catalog .grid2{
+    flex:1;
+    display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+    gap:2.2cqw;
+  }
+  .t-catalog .card{
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .t-catalog .card .idx{
+    font:500 1.4cqw/1 var(--font-sans);
+    color:var(--fg-subtle);
+    letter-spacing:0.08cqw;
+    font-variant-numeric:tabular-nums;
+  }
+  .t-catalog .card .h{
+    font:500 2cqw/1.15 var(--font-sans);
+    letter-spacing:-0.04cqw;
+    color:var(--fg);
+    margin:0.6cqw 0 0.9cqw;
+  }
+  .t-catalog .card .p{
+    font:400 1.5cqw/1.45 var(--font-sans);
+    color:var(--fg-muted);
+  }
+  .t-catalog .card .tag{ margin-top:1.2cqw; align-self:flex-start }
+
+  /* ── Treatment 6: Closer / Final CTA ───────────────────────────────────── */
+  .t-closer .eyebrow{ margin-bottom:2.4cqw }
+  .t-closer .close-line{
+    font:500 8.4cqw/1.06 var(--font-sans);
+    letter-spacing:-0.28cqw;
+    color:var(--fg);
+    max-width:80cqw;
+    padding-bottom:0.4cqw;
+    text-align:center;
+  }
+  .t-closer .close-line em{ font-family:var(--font-display); font-style:italic; font-weight:400; color:var(--accent); letter-spacing:-0.2cqw }
+  .t-closer .cta{ margin-top:4.6cqw }
+  .t-closer .rule{ width:40cqw; margin-top:4cqw }
+
+  /* ── Treatment 7: Trust Band ────────────────────────────────────────────── */
+  .t-trust{ flex-direction:column; padding:3.4cqw 5cqw; justify-content:center }
+  .t-trust .top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:2.2cqw }
+  .t-trust .band{
+    display:flex; align-items:center; gap:1.4cqw;
+    padding:2cqw 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .t-trust .attrib{
+    margin-top:1.6cqw;
+    font:400 1.4cqw/1.3 var(--font-sans);
+    color:var(--fg-subtle);
+    display:flex; justify-content:space-between;
+  }
+
+  /* ── Treatment 8: Guarantee Row ─────────────────────────────────────────── */
+  .t-guarantee{ flex-direction:column; padding:5cqw; justify-content:center }
+  .t-guarantee .eyebrow{ margin-bottom:1.4cqw }
+  .t-guarantee .title{
+    font:500 4.4cqw/1.08 var(--font-sans);
+    letter-spacing:-0.14cqw; color:var(--fg);
+    max-width:70cqw;
+    padding-bottom:0.3cqw;
+    margin-bottom:2.6cqw;
+  }
+  .t-guarantee .title em{ font-family:var(--font-display); font-style:italic; font-weight:400; color:var(--accent) }
+  .t-guarantee .row-band{
+    display:flex; align-items:center;
+    padding:2.4cqw 3cqw;
+  }
+  .t-guarantee .row-band .item{
+    flex:1;
+    display:flex; flex-direction:column; gap:0.4cqw;
+    padding:0 2cqw;
+  }
+  .t-guarantee .row-band .item:first-child{ padding-left:0 }
+  .t-guarantee .row-band .item:last-child{ padding-right:0 }
+  .t-guarantee .row-band .item + .item{ border-left:1px solid var(--border) }
+  .t-guarantee .row-band .item .k{
+    font:500 1.15cqw/1.2 var(--font-sans);
+    color:var(--fg-subtle);
+    letter-spacing:0.06cqw; text-transform:uppercase;
+  }
+  .t-guarantee .row-band .item .v{
+    font:500 2cqw/1.15 var(--font-sans);
+    letter-spacing:-0.04cqw; color:var(--fg);
+  }
+
+  /* ── Palette / Type sections ────────────────────────────────────────────── */
+  .swatch-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:20px }
+  @media (max-width:1080px){ .swatch-grid{ grid-template-columns:repeat(2,1fr) } }
+  .swatch{
+    border:1px solid var(--gallery-rule);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--bg-soft);
+  }
+  .swatch .chip{ height:120px; border-bottom:1px solid var(--gallery-rule) }
+  .swatch .meta{ padding:14px 16px; display:flex; flex-direction:column; gap:4px }
+  .swatch .name{ font:500 14px/1.2 var(--font-sans); color:var(--fg) }
+  .swatch .hex{ font:500 12px/1 var(--font-sans); color:var(--fg-muted); font-feature-settings:'ss01','cv11'; letter-spacing:0.04em }
+  .swatch .role{ font:400 12px/1.4 var(--font-sans); color:var(--fg-subtle) }
+
+  .type-rows{ display:flex; flex-direction:column; border-top:1px solid var(--gallery-rule) }
+  .type-row{
+    display:grid; grid-template-columns:200px 1fr 140px;
+    gap:24px; align-items:center;
+    padding:22px 0;
+    border-bottom:1px solid var(--gallery-rule);
+  }
+  .type-row .tok{
+    font:500 13px/1.3 var(--font-sans);
+    color:var(--fg-subtle);
+    letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .type-row .spec{ color:var(--fg); font-family:var(--font-sans) }
+  .type-row .spec em{ font-family:var(--font-display); font-style:italic; font-weight:400; color:var(--accent) }
+  .type-row .size{ font:500 12px/1 var(--font-sans); color:var(--fg-muted); text-align:right; letter-spacing:0.04em; font-feature-settings:'ss01','cv11' }
+
+  /* Principles cards */
+  .prin{
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
+  }
+  @media (max-width:1080px){ .prin{ grid-template-columns:1fr } }
+  .prin .card{
+    background:var(--bg-soft);
+    border:1px solid var(--gallery-rule);
+    border-radius:12px;
+    padding:26px 28px;
+  }
+  .prin .k{
+    font:500 12px/1 var(--font-sans);
+    color:var(--fg-subtle);
+    letter-spacing:0.14em; text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .prin .do .k{ color:var(--fg-muted) }
+  .prin .dont .k{ color:var(--accent) }
+  .prin ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px }
+  .prin li{
+    font:400 15px/1.45 var(--font-sans);
+    color:var(--gallery-ink);
+    padding-left:18px; position:relative;
+  }
+  .prin li::before{
+    content:""; position:absolute; left:0; top:9px;
+    width:8px; height:1px; background:var(--fg-subtle);
+  }
+
+  /* Footer */
+  .foot{
+    padding:80px 0 60px;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font:400 13px/1.4 var(--font-sans);
+    color:var(--fg-subtle);
+    border-top:1px solid var(--gallery-rule);
+  }
+  .foot em{ font-family:var(--font-display); font-style:italic; color:var(--accent) }
+</style>
+</head>
+<body>
+
+<!-- ──────────────────────────────────────────────────────────────────────────
+  COVER — full-bleed 16:9, first element in <body>. IS the identity treatment.
+─────────────────────────────────────────────────────────────────────────── -->
+<div class="cover">
+  <div class="plate ground-bg center-both t-cover">
+    <div class="c-eyebrow-label eyebrow">frame · claude leads · growthstackr</div>
+    <div class="wordmark">claude<em>leads</em></div>
+    <div class="c-hairline rule"></div>
+  </div>
+</div>
+
+<div class="doc">
+
+  <!-- ──────────────────────────────────────────────────────────────────────
+    01 · Palette
+  ─────────────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <h2 class="section-title">Palette <em>· mörk stack, en coral</em></h2>
+      <span class="section-tag">carried verbatim</span>
+    </div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#050505"></div><div class="meta"><span class="name">bg</span><span class="hex">#050505</span><span class="role">sidans bas</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#0e0f10"></div><div class="meta"><span class="name">bg-soft</span><span class="hex">#0e0f10</span><span class="role">sektionsband</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#121416"></div><div class="meta"><span class="name">bg-card</span><span class="hex">#121416</span><span class="role">kort-yta</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#1c1f22"></div><div class="meta"><span class="name">bg-elevated</span><span class="hex">#1c1f22</span><span class="role">lyfta paneler</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#ffffff"></div><div class="meta"><span class="name">fg</span><span class="hex">#ffffff</span><span class="role">headlines</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#b0b0b0"></div><div class="meta"><span class="name">fg-muted</span><span class="hex">#b0b0b0</span><span class="role">brödtext</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#9ca3af"></div><div class="meta"><span class="name">fg-subtle</span><span class="hex">#9ca3af</span><span class="role">captions</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#ff5b49"></div><div class="meta"><span class="name">accent</span><span class="hex">#ff5b49</span><span class="role">restrained committed</span></div></div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────────────────────────────
+    02 · Typography
+  ─────────────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-index">02</span>
+      <h2 class="section-title">Typography <em>· two ramps</em></h2>
+      <span class="section-tag">Inter · Instrument Serif</span>
+    </div>
+    <div class="type-rows">
+      <div class="type-row">
+        <div class="tok">wordmark-mega</div>
+        <div class="spec" style="font:500 44px/0.86 var(--font-sans); letter-spacing:-2.4px">claude<em style="font-family:var(--font-display);font-style:italic;font-weight:400;color:var(--accent)">leads</em></div>
+        <div class="size">28cqw · 500</div>
+      </div>
+      <div class="type-row">
+        <div class="tok">display-hero</div>
+        <div class="spec" style="font:500 40px/1.02 var(--font-sans); letter-spacing:-1px">Byggd för <em>byggare</em></div>
+        <div class="size">13cqw · 500</div>
+      </div>
+      <div class="type-row">
+        <div class="tok">display-claim</div>
+        <div class="spec" style="font:500 32px/1.06 var(--font-sans); letter-spacing:-0.5px">Direkt. Anti-hype.</div>
+        <div class="size">8.4cqw · 500</div>
+      </div>
+      <div class="type-row">
+        <div class="tok">section-head</div>
+        <div class="spec" style="font:500 24px/1.08 var(--font-sans); letter-spacing:-0.3px">Vad detta är</div>
+        <div class="size">4.4cqw · 500</div>
+      </div>
+      <div class="type-row">
+        <div class="tok">stat-ledger</div>
+        <div class="spec" style="font:500 34px/0.94 var(--font-sans); letter-spacing:-0.4px; font-feature-settings:'ss01','cv11'">— figure —</div>
+        <div class="size">6.2cqw · 500</div>
+      </div>
+      <div class="type-row">
+        <div class="tok">body-frame</div>
+        <div class="spec" style="font:400 16px/1.5 var(--font-sans); color:var(--fg-muted)">Sidan ÄR produkten. Ingen dashboard, inga tabeller. Bara erbjudandet.</div>
+        <div class="size">1.55cqw · 400</div>
+      </div>
+      <div class="type-row">
+        <div class="tok">eyebrow</div>
+        <div class="spec" style="font:500 12px/1.2 var(--font-sans); letter-spacing:0.14em; text-transform:uppercase; color:var(--fg-subtle)">frame · claude leads</div>
+        <div class="size">1.15cqw · 500</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────────────────────────────
+    03 · Composition Examples — the contact sheet
+  ─────────────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-index">03</span>
+      <h2 class="section-title">Composition <em>· 16:9</em></h2>
+      <span class="section-tag">landscape · 1920×1080</span>
+    </div>
+
+    <div class="grid">
+
+      <!-- 1 · Identity Cover -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-bg center-both t-cover">
+            <div class="c-eyebrow-label eyebrow">frame · claude leads</div>
+            <div class="wordmark">claude<em>leads</em></div>
+            <div class="c-hairline rule"></div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">01</span>
+          <span class="name">Identity Cover</span>
+          <span class="dot"></span>
+          <span class="arch">identity/cover</span>
+          <span class="pace">pace · low</span>
+        </div>
+      </div>
+
+      <!-- 2 · Oversized Claim -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-bg left-top t-claim">
+            <div class="c-eyebrow-label eyebrow">01 · vad detta är</div>
+            <div class="headline">Byggd för <em>byggare</em>. Inget mer.</div>
+            <div class="c-hairline rule"></div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">02</span>
+          <span class="name">Oversized Claim</span>
+          <span class="dot"></span>
+          <span class="arch">editorial/oversized-claim</span>
+          <span class="pace">pace · low</span>
+        </div>
+      </div>
+
+      <!-- 3 · Focal Artifact — Tier Comparison -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-soft t-tier">
+            <div class="head">
+              <div class="title">Pris, <em>rent</em>.</div>
+              <div class="toggle">engångs · 5 inst.</div>
+            </div>
+            <div class="row">
+              <div class="tier">
+                <div>
+                  <div class="name">Start</div>
+                  <div class="price">{price}</div>
+                  <div class="meta">Kom igång. Hairline-support.</div>
+                </div>
+                <div style="margin-top:1.4cqw" class="meta">4 veckor</div>
+              </div>
+              <div class="tier center">
+                <span class="c-price-pill-recommended pill">Bäst värde</span>
+                <div>
+                  <div class="name">Bygg</div>
+                  <div class="price"><s>{prev}</s>{price}</div>
+                  <div class="meta">Hela stacken. Attribuerade benchmarks.</div>
+                </div>
+                <div style="margin-top:1.4cqw" class="meta">8 veckor</div>
+              </div>
+              <div class="tier">
+                <div>
+                  <div class="name">Skala</div>
+                  <div class="price">{price}</div>
+                  <div class="meta">För team som redan säljer.</div>
+                </div>
+                <div style="margin-top:1.4cqw" class="meta">12 veckor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">03</span>
+          <span class="name">Focal Artifact · Recommended Tier</span>
+          <span class="dot"></span>
+          <span class="arch">focal-artifact / signature</span>
+          <span class="pace">pace · moderate</span>
+        </div>
+      </div>
+
+      <!-- 4 · Stat Ledger -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-soft t-ledger">
+            <div class="header">
+              <div class="c-eyebrow-label">02 · extern benchmark</div>
+              <div class="c-eyebrow-label" style="color:var(--fg-muted)">attribuerade</div>
+            </div>
+            <div class="c-hairline top-rule"></div>
+            <div class="row">
+              <div class="cell">
+                <div class="c-stat-cell">— figure —</div>
+                <div class="c-stat-cell-label">Möten / vecka</div>
+              </div>
+              <div class="cell">
+                <span class="c-pin-dot dot"></span>
+                <div class="c-stat-cell">— figure —</div>
+                <div class="c-stat-cell-label">Reply rate</div>
+              </div>
+              <div class="cell">
+                <div class="c-stat-cell">— figure —</div>
+                <div class="c-stat-cell-label">Pipeline / kvartal</div>
+              </div>
+            </div>
+            <div class="c-hairline bottom-rule"></div>
+            <div class="foot">
+              <span>Källa: <em>extern · attribuerad</em></span>
+              <span>2026</span>
+            </div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">04</span>
+          <span class="name">Stat Ledger</span>
+          <span class="dot"></span>
+          <span class="arch">data/ledger</span>
+          <span class="pace">pace · moderate</span>
+        </div>
+      </div>
+
+      <!-- 5 · Problem Catalog -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-bg t-catalog">
+            <div class="head">
+              <div class="title">Problemen vi <em>faktiskt</em> löser</div>
+              <div class="c-eyebrow-label" style="align-self:flex-end">03 · VoC</div>
+            </div>
+            <div class="grid2">
+              <div class="c-card-hairline card">
+                <div>
+                  <span class="idx">01</span>
+                  <div class="h">Kalla listor som inte konverterar</div>
+                  <div class="p">Data utan kontext. Volym utan träffbild. Fler mejl räddar inte kvartalet.</div>
+                </div>
+                <span class="c-tag-neutral tag">kärna</span>
+              </div>
+              <div class="c-card-hairline card">
+                <div>
+                  <span class="idx">02</span>
+                  <div class="h">Möten utan mandat</div>
+                  <div class="p">Fel person, fel tajming, ingen budget. Kalender full, pipeline tom.</div>
+                </div>
+              </div>
+              <div class="c-card-hairline card">
+                <div>
+                  <span class="idx">03</span>
+                  <div class="h">Verktygsstack utan strategi</div>
+                  <div class="p">Sex plattformar, noll ägarskap. Ingen vet varför de gör det de gör.</div>
+                </div>
+              </div>
+              <div class="c-card-hairline card">
+                <div>
+                  <span class="idx">04</span>
+                  <div class="h">Attribution som en gissning</div>
+                  <div class="p">Sista klicket får all cred. Byggarbetet är osynligt i rapporten.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">05</span>
+          <span class="name">Problem Catalog</span>
+          <span class="dot"></span>
+          <span class="arch">chrome/catalog</span>
+          <span class="pace">pace · high</span>
+        </div>
+      </div>
+
+      <!-- 6 · Closer / Final CTA -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-bg center-both t-closer">
+            <div class="c-eyebrow-label eyebrow">06 · börja</div>
+            <div class="close-line">Bygg <em>pipeline</em>, inte hype.</div>
+            <button class="c-button-primary-giant cta" type="button">Ansök nu</button>
+            <div class="c-hairline rule"></div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">06</span>
+          <span class="name">Closer / Final CTA</span>
+          <span class="dot"></span>
+          <span class="arch">identity/closer</span>
+          <span class="pace">pace · low</span>
+        </div>
+      </div>
+
+      <!-- 7 · Trust Band -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-soft pad-tight t-trust">
+            <div class="top">
+              <div class="c-eyebrow-label">04 · byggare vi jobbat med</div>
+              <div class="c-eyebrow-label" style="color:var(--fg-muted)">— figure — team</div>
+            </div>
+            <div class="band">
+              <span class="c-logo-chip">Entity A</span>
+              <span class="c-logo-chip">Entity B</span>
+              <span class="c-logo-chip">Entity C</span>
+              <span class="c-logo-chip">Entity D</span>
+              <span class="c-logo-chip">Entity E</span>
+              <span class="c-logo-chip">Entity F</span>
+            </div>
+            <div class="attrib">
+              <span>Logotyper visade med tillstånd</span>
+              <span>ingen coral på trust-plate</span>
+            </div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">07</span>
+          <span class="name">Trust Band</span>
+          <span class="dot"></span>
+          <span class="arch">chrome/catalog</span>
+          <span class="pace">pace · moderate</span>
+        </div>
+      </div>
+
+      <!-- 8 · Guarantee Row -->
+      <div class="frame-cell">
+        <div class="frame">
+          <div class="plate ground-bg t-guarantee">
+            <div class="c-eyebrow-label eyebrow">05 · vad du får</div>
+            <div class="title">Hairline-rad, <em>ingen</em> 3-kort-grid.</div>
+            <div class="c-guarantee-row row-band">
+              <div class="item">
+                <div class="k">Villkor</div>
+                <div class="v">Attribuerat</div>
+              </div>
+              <div class="item">
+                <div class="k">Leverans</div>
+                <div class="v">8 veckor</div>
+              </div>
+              <div class="item">
+                <div class="k">Support</div>
+                <div class="v">Direkt kanal</div>
+              </div>
+              <div class="item">
+                <div class="k">Attribution</div>
+                <div class="v">Extern källa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rail">
+          <span class="idx">08</span>
+          <span class="name">Guarantee Row</span>
+          <span class="dot"></span>
+          <span class="arch">brand-signature</span>
+          <span class="pace">pace · moderate</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ──────────────────────────────────────────────────────────────────────
+    04 · Principles
+  ─────────────────────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <h2 class="section-title">Principles <em>· squint, silence, restraint</em></h2>
+      <span class="section-tag">at frame scale</span>
+    </div>
+    <div class="prin">
+      <div class="card do">
+        <div class="k">Do</div>
+        <ul>
+          <li>Centrera cover, claim och closer. Variera ankaret mellan frames.</li>
+          <li>Ranchera coral: en instans per frame. Pill, italic-ord, eller pin-dot. Aldrig tre.</li>
+          <li>Sätt italic-accenter som &lt;em&gt; inuti .gs-heading — Instrument Serif, coral, italic.</li>
+          <li>Cappa headline-blocket ≤ 78cqw brett. Stega rampen efter ordantal.</li>
+          <li>Attribuera varje benchmark. Extern + attribuerad, per §0.</li>
+          <li>Variera sektionsrytm: växla mellan section (80px) och section-lg (112px).</li>
+        </ul>
+      </div>
+      <div class="card dont">
+        <div class="k">Don't</div>
+        <ul>
+          <li>Ingen em-dash. Ingen en-dash. Komma, kolon, semikolon, parentes.</li>
+          <li>Inga side-stripe borders som accent (border-left/right &gt; 1px).</li>
+          <li>Ingen gradient text (background-clip: text).</li>
+          <li>Ingen identisk card grid två gånger i en sekvens.</li>
+          <li>Ingen blå CTA. Coral är lock.</li>
+          <li>Ingen radie-mix i samma frame. Pill + card. Aldrig en tredje radie.</li>
+          <li>Inga banned words: unlock, supercharge, 10x, seamless, plug-and-play, ABM.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="foot">
+    <span>frame.md · claude leads · <em>growthstackr</em></span>
+    <span>atoms sacred · composition free · numbers from the script</span>
+  </div>
+
+</div>
+
+</body>
+</html>

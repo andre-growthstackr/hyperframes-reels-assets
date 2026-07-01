@@ -1,0 +1,25 @@
+{
+  "library": "tool-logos",
+  "_comment": "Drop-in checklist for third-party tool logos. One entry per tool the shorts name aloud. SVG preferred (transparent PNG fallback). Fill 'file', 'source', and 'license' ONLY when you actually drop the mark: 'source' = the official brand/press URL you pulled it from, 'license' = the brand-guideline / usage note. Every filled entry MUST be mirrored in ../../../licenses/logo-usage-notes.md. An empty 'file' means the slot is still a drop-in TODO. Used on the logo-flash beat (track-index 7), small + clean on a neutral ground, flashed ~0.5-1s when a tool is named (see frame.md).",
+  "logos": [
+    { "id": "claude", "file": "claude.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "chatgpt", "file": "chatgpt.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "n8n", "file": "n8n.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "make", "file": "make.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "zapier", "file": "zapier.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "gohighlevel", "file": "gohighlevel.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "google-analytics", "file": "google-analytics.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "google-tag-manager", "file": "google-tag-manager.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "meta", "file": "meta.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "linkedin", "file": "linkedin.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "vercel", "file": "vercel.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "netlify", "file": "netlify.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "supabase", "file": "supabase.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "stripe", "file": "stripe.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "webflow", "file": "webflow.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "cursor", "file": "cursor.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "claude-code", "file": "claude-code.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "search-console", "file": "search-console.svg", "format": "svg", "source": "", "license": "" },
+    { "id": "looker-studio", "file": "looker-studio.svg", "format": "svg", "source": "", "license": "" }
+  ]
+}

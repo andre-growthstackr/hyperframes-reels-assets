@@ -1,0 +1,17 @@
+# DEMO DATA — not real results. Fictional leads for staging a UI only (see README.md truth rule).
+name,company,title,source,score,status
+Elin Bergström,Nordvik Logistics,Head of Operations,LinkedIn Ad,87,Qualified
+Marcus Holloway,Brightpath SaaS,VP Marketing,Webinar,74,Nurturing
+Priya Nair,Coastline Retail Group,Ecommerce Director,Organic Search,66,New
+Tobias Lindqvist,Fjord Manufacturing,COO,Referral,91,Qualified
+Sarah Whitfield,Lumen Health,Growth Lead,Meta Ad,58,New
+Andreas Vogel,Kesselhaus GmbH,Managing Director,Cold Email,49,Disqualified
+Hannah Osei,Verdant Agriculture,Marketing Manager,LinkedIn Ad,71,Nurturing
+David Chen,Summit Fintech,Head of Demand Gen,Content Download,83,Qualified
+Isabella Rossi,Aria Interiors,Founder,Instagram DM,62,New
+Karl Petersen,Baltic Freight Co,Sales Director,Referral,78,Nurturing
+Fatima Al-Rashid,Meridian Consulting,Partner,Webinar,69,New
+Oliver Grant,Pinewood Software,Product Marketing,Organic Search,55,New
+Yuki Tanaka,Sakura Robotics,Head of Marketing,LinkedIn Ad,80,Qualified
+Laura Mendes,Solaris Energy,Demand Gen Manager,Meta Ad,64,Nurturing
+Erik Sandberg,Granite Property,CEO,Referral,88,Qualified

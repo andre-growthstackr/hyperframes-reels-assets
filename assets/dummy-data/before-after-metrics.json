@@ -1,0 +1,17 @@
+{
+  "_note": "DEMO",
+  "_truth_rule": "DEMO DATA — not real results. For staging a before/after beat only. See README.md. Never present as a real GrowthStackr or client outcome without a true, attributed source.",
+  "label": "Demo before/after",
+  "before": {
+    "leads_per_month": 12,
+    "conversion_rate": "1.4%",
+    "cost_per_lead": "$180",
+    "hours_per_week_manual": 9
+  },
+  "after": {
+    "leads_per_month": 47,
+    "conversion_rate": "3.8%",
+    "cost_per_lead": "$61",
+    "hours_per_week_manual": 2
+  }
+}

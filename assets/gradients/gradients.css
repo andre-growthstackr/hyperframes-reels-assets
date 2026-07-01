@@ -1,0 +1,82 @@
+/* ==========================================================================
+   GrowthStackr video-DNA — reusable gradients
+   Values derived from frame.md + the scene components. frame.md is the
+   aesthetic source of truth. Coral fires ONCE per frame; never wash a face.
+   ========================================================================== */
+
+:root {
+  /* brand primitives (mirror of brand/colors/tokens.json) */
+  --bg: #050505;
+  --bg-soft: #0e0f10;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* ----------------------------------------------------------------------
+     --grad-dark-radial — DEFAULT dark backdrop.
+     WHEN: near every dark scene. A near-black ground with a faint top glow
+     so oversized type has a quiet room to sit in. Carried verbatim from
+     frame.md (the dark radial backdrop).
+     -------------------------------------------------------------------- */
+  --grad-dark-radial: radial-gradient(120% 80% at 50% 0%, #0b0c0e 0%, #050505 60%);
+
+  /* ----------------------------------------------------------------------
+     --grad-light-radial — light-mode backdrop.
+     WHEN: occasional light-mode / ground-cream-adjacent scenes only. Warm
+     off-white with a soft top lift. The inverse of the dark radial.
+     -------------------------------------------------------------------- */
+  --grad-light-radial: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, #f0eeea 60%);
+
+  /* ----------------------------------------------------------------------
+     --grad-coral-wave — toned-down coral emphasis layer.
+     WHEN: a SINGLE hero / CTA / emphasis scene, layered OVER a dark ground
+     as the frame's one coral instance. Opacity is baked low (~0.14 peak).
+     NEVER over a talking-head face; behind graphics only, above the seam.
+     -------------------------------------------------------------------- */
+  --grad-coral-wave: radial-gradient(
+    90% 60% at 50% 18%,
+    rgba(255, 91, 73, 0.16) 0%,
+    rgba(255, 91, 73, 0.09) 34%,
+    rgba(255, 91, 73, 0) 70%
+  );
+
+  /* ----------------------------------------------------------------------
+     --grad-violet-wave — toned-down secondary (violet) emphasis layer.
+     WHEN: the same emphasis move as the coral wave but for a secondary
+     beat, so two consecutive emphasis scenes don't both go coral. Sparingly.
+     Same opacity band (~0.09–0.15). NEVER over a face.
+     -------------------------------------------------------------------- */
+  --grad-violet-wave: radial-gradient(
+    90% 60% at 50% 18%,
+    rgba(127, 86, 217, 0.15) 0%,
+    rgba(127, 86, 217, 0.09) 34%,
+    rgba(127, 86, 217, 0) 70%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Utility classes — apply to a full-frame BACKGROUND element (.has-ground),
+   never to a card, the browser-window content, the caption pill, or the
+   talking-head video.
+   -------------------------------------------------------------------------- */
+
+.grad-dark {
+  background: var(--grad-dark-radial);
+  background-color: var(--bg);
+}
+
+.grad-light {
+  background: var(--grad-light-radial);
+  background-color: #f0eeea;
+}
+
+/* Emphasis waves layer OVER a base ground. Compose as two backgrounds so the
+   wave sits above the dark radial. Use ONE wave per frame (coral OR violet). */
+.grad-dark--coral-wave {
+  background: var(--grad-coral-wave), var(--grad-dark-radial);
+  background-color: var(--bg);
+}
+
+.grad-dark--violet-wave {
+  background: var(--grad-violet-wave), var(--grad-dark-radial);
+  background-color: var(--bg);
+}

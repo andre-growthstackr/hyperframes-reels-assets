@@ -1,0 +1,39 @@
+{
+  "_comment": "Index of GrowthStackr short-form background music beds. Every track in assets/music/ has one entry here; compositions reference beds by `id`. The entries below are EXAMPLE / PLACEHOLDER records — their `file` paths point at audio that is NOT added yet. Replace with real cleared audio and log each in licenses/music-licenses.md before use. Schema per entry: id, file, bpm, mood, energy, loopable, vocals, best_for, license. See README.md for the mood -> video-type mapping. Bed volume rides ~0.08-0.10, always under the voice; no vocals under talking-head footage.",
+  "library": "music",
+  "music": [
+    {
+      "id": "lofi_soft_01",
+      "file": "lofi/lofi_soft_01.mp3",
+      "bpm": 82,
+      "mood": "calm-premium",
+      "energy": "low-medium",
+      "loopable": true,
+      "vocals": false,
+      "best_for": ["case-study", "ai-tutorial", "tool-breakdown"],
+      "license": "PLACEHOLDER — not yet added; commercial-cleared source required"
+    },
+    {
+      "id": "soft_tech_01",
+      "file": "soft-tech/soft_tech_01.mp3",
+      "bpm": 100,
+      "mood": "soft-tech",
+      "energy": "medium",
+      "loopable": true,
+      "vocals": false,
+      "best_for": ["ai-tool-breakdown", "saas-demo", "product-demo"],
+      "license": "PLACEHOLDER — not yet added; commercial-cleared source required"
+    },
+    {
+      "id": "no_vocals_bed_01",
+      "file": "no-vocals/no_vocals_bed_01.mp3",
+      "bpm": 90,
+      "mood": "no-vocals",
+      "energy": "low",
+      "loopable": true,
+      "vocals": false,
+      "best_for": ["talking-head", "explainer", "cta"],
+      "license": "PLACEHOLDER — not yet added; commercial-cleared source required"
+    }
+  ]
+}

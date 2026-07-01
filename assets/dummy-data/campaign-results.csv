@@ -1,0 +1,10 @@
+# DEMO DATA — not real results. Fictional campaign metrics for staging a UI only (see README.md truth rule).
+campaign,spend,impressions,clicks,leads,cpl
+Q3 LinkedIn - Ops Leaders,4820,182400,2140,68,70.88
+Meta Retargeting - Warm,1960,241800,3620,54,36.30
+Search - Brand Terms,780,44200,1980,41,19.02
+Search - Non-Brand Ops,3410,98600,1610,29,117.59
+Meta Prospecting - Lookalike,5240,412700,4880,73,71.78
+Webinar Promo - LinkedIn,2130,76900,940,22,96.82
+YouTube - Explainer,1470,203500,1120,17,86.47
+Retention Email Boost,320,58900,1340,26,12.31

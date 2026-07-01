@@ -1,0 +1,50 @@
+{
+  "_comment": "Index of GrowthStackr short-form SFX. Every sound in assets/sfx/ has one entry here; compositions reference sounds by `id`. The entries below are EXAMPLE / PLACEHOLDER records — their `file` paths point at audio that is NOT added yet. Replace with real cleared audio and log each in licenses/sfx-licenses.md before use. Schema per entry: id, file, category, intensity, duration_ms, best_for, avoid_for, license, feeling. See README.md for the beat -> SFX mapping and volume rules (SFX ride 0.14-0.32, under the voice).",
+  "library": "sfx",
+  "sfx": [
+    {
+      "id": "soft_whoosh_01",
+      "file": "whoosh/soft_whoosh_01.mp3",
+      "category": "transition",
+      "intensity": "low",
+      "duration_ms": 420,
+      "best_for": ["layout_change", "asset_enter", "section_change", "flare_transition"],
+      "avoid_for": ["click", "metric_reveal", "cta"],
+      "license": "PLACEHOLDER — not yet added; commercial-cleared source required",
+      "feeling": "premium, clean, digital"
+    },
+    {
+      "id": "metric_ding_01",
+      "file": "ding/metric_ding_01.mp3",
+      "category": "confirm",
+      "intensity": "medium",
+      "duration_ms": 260,
+      "best_for": ["positive_metric_land", "key_point", "success"],
+      "avoid_for": ["problem_stat", "typing", "transition"],
+      "license": "PLACEHOLDER — not yet added; commercial-cleared source required",
+      "feeling": "premium, clean, digital"
+    },
+    {
+      "id": "reveal_impact_01",
+      "file": "soft-impact/reveal_impact_01.mp3",
+      "category": "impact",
+      "intensity": "medium",
+      "duration_ms": 380,
+      "best_for": ["hook", "big_reveal", "positive_metric_land"],
+      "avoid_for": ["list_item", "typing", "cta"],
+      "license": "PLACEHOLDER — not yet added; commercial-cleared source required",
+      "feeling": "premium, clean, digital"
+    },
+    {
+      "id": "label_pop_01",
+      "file": "pop/label_pop_01.mp3",
+      "category": "accent",
+      "intensity": "low",
+      "duration_ms": 140,
+      "best_for": ["list_item", "label_enter"],
+      "avoid_for": ["big_reveal", "problem_stat", "transition"],
+      "license": "PLACEHOLDER — not yet added; commercial-cleared source required",
+      "feeling": "premium, clean, digital"
+    }
+  ]
+}

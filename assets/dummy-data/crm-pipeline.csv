@@ -1,0 +1,9 @@
+# DEMO DATA — not real results. Fictional pipeline stages for staging a UI only (see README.md truth rule).
+stage,count,value
+New Lead,142,213000
+Contacted,88,176000
+Qualified,47,141000
+Proposal Sent,23,115000
+Negotiation,11,88000
+Closed Won,7,63000
+Closed Lost,19,0

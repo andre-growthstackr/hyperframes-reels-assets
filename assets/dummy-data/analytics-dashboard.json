@@ -1,0 +1,24 @@
+{
+  "_note": "DEMO DATA — not real results. GA4-style metrics for staging a UI only. See README.md truth rule. Do NOT present these numbers as a real GrowthStackr or client result.",
+  "property": "Demo Property (GA4)",
+  "date_range": { "start": "2025-06-01", "end": "2025-06-30", "label": "Last 30 days" },
+  "metrics": {
+    "active_users": 18420,
+    "new_users": 12960,
+    "sessions": 27340,
+    "engaged_sessions": 16210,
+    "engagement_rate": 0.593,
+    "avg_engagement_time_sec": 96,
+    "conversions": 412,
+    "conversion_rate": 0.0151,
+    "bounce_rate": 0.407
+  },
+  "top_channels": [
+    { "channel": "Organic Search", "sessions": 9840, "conversions": 158 },
+    { "channel": "Paid Social", "sessions": 6120, "conversions": 97 },
+    { "channel": "Direct", "sessions": 4980, "conversions": 71 },
+    { "channel": "Referral", "sessions": 3210, "conversions": 54 },
+    { "channel": "Email", "sessions": 3190, "conversions": 32 }
+  ],
+  "trend_daily_users": [520, 610, 580, 640, 705, 690, 612, 588, 634, 701, 742, 690, 655, 620]
+}

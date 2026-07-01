@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Fullscreen talking head</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── PROPS — the skill edits this block per video (re-skin colours via frame.md) ── -->
+    <script>
+      window.FULLSCREEN_TALKING_HEAD_PROPS = {
+        mode: "dark", // "dark" | "light"
+        kicker: "", // optional tiny uppercase label top-left (with a single coral tick); empty = hidden
+        vignette: true, // soft dark gradient over the lower third so a caption stays legible
+      };
+    </script>
+
+    <div
+      id="root"
+      data-composition-id="fullscreen-talking-head"
+      data-start="0"
+      data-duration="3.0"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="fth-stage clip" data-start="0" data-duration="3.0" data-track-index="0">
+        <!-- Real footage is dropped into #head at build time; this is the placeholder slot. -->
+        <div class="fth-head" id="fth-head">
+          <div class="fth-placeholder-label">talking head — full frame</div>
+        </div>
+        <div class="fth-vignette" id="fth-vignette"></div>
+        <div class="fth-kicker clip" id="fth-kicker" data-start="0.3" data-duration="2.7" data-track-index="0">
+          <span class="fth-tick"></span>
+          <span class="fth-kicker-text" id="fth-kicker-text"></span>
+        </div>
+      </div>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

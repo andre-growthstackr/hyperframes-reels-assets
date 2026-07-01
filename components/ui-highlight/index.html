@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sv" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>UI highlight</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── PROPS — the skill edits this block per video (re-skin colours via frame.md) ── -->
+    <script>
+      window.UI_HIGHLIGHT_PROPS = {
+        // rect is the spotlight region in 1080×1920 px (x,y = top-left corner)
+        rect: { x: 140, y: 640, w: 800, h: 340 },
+        label: "här sker det", // small caption near the rect; "" hides it
+        dimOpacity: 0.62, // how dark everything OUTSIDE the rect goes (0–1)
+        accentColor: "#ff5b49", // overrides --coral; the rect border + arrow
+        showArrow: true, // draw a coral arrow pointing at the rect
+      };
+    </script>
+
+    <div
+      id="root"
+      data-composition-id="ui-highlight"
+      data-start="0"
+      data-duration="2.4"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="uh-stage clip" data-start="0" data-duration="2.4" data-track-index="6">
+        <div class="uh-rect" id="uh-rect">
+          <div class="uh-border" id="uh-border"></div>
+        </div>
+        <div class="uh-label" id="uh-label"></div>
+        <svg class="uh-arrow" id="uh-arrow" viewBox="0 0 200 200" aria-hidden="true">
+          <path
+            id="uh-arrow-path"
+            d="M12 12 C 80 40, 120 90, 168 158"
+            fill="none"
+            stroke="var(--coral)"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+          <path
+            id="uh-arrow-head"
+            d="M168 158 L142 150 M168 158 L160 130"
+            fill="none"
+            stroke="var(--coral)"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

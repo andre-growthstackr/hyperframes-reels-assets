@@ -1,0 +1,117 @@
+/* workflow-diagram — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --ink: #0a0a0a;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* mode-driven (set by animation.js) */
+  --bg: var(--canvas);
+  --fg: var(--white);
+  --fg-muted: var(--offwhite);
+  --node-bg: var(--charcoal);
+  --node-border: var(--slate);
+  --connector: var(--slate);
+  --chevron: #667085; /* connector arrow — brighter than the hairline for legibility */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+
+#root { position: absolute; inset: 0; }
+.backdrop {
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 80% at 50% 0%, #0b0c0e 0%, var(--bg) 60%);
+}
+body.light .backdrop {
+  background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--cream) 60%);
+}
+
+.wf-wrap {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px 84px;
+  z-index: 3;
+}
+
+/* ── flow container ── */
+.wf-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wf-flow.vertical { flex-direction: column; }
+.wf-flow.horizontal { flex-direction: row; }
+
+/* ── node card ── */
+.wf-node {
+  background: var(--node-bg);
+  border: 1px solid var(--node-border);
+  border-radius: 28px;
+  padding: 52px 56px;
+  display: flex; flex-direction: column; gap: 14px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+.wf-flow.vertical .wf-node { width: 640px; }
+.wf-flow.horizontal .wf-node { min-width: 260px; }
+
+.wf-label {
+  font-size: 88px; font-weight: 800; line-height: 0.98;
+  letter-spacing: -0.03em; color: var(--fg);
+}
+.wf-sub {
+  font-size: 38px; font-weight: 500; color: var(--fg-muted); opacity: 0.8;
+}
+.wf-node.hero {
+  border-color: var(--coral);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--coral);
+}
+.wf-node.hero .wf-label { color: var(--coral); }
+
+/* ── connector (line + chevron) ── */
+.wf-connector {
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.wf-flow.vertical .wf-connector { flex-direction: column; height: 128px; }
+.wf-flow.horizontal .wf-connector { flex-direction: row; width: 128px; }
+
+.wf-line {
+  background: var(--connector);
+}
+.wf-flow.vertical .wf-line {
+  width: 4px; height: 100%;
+  transform-origin: top center;
+}
+.wf-flow.horizontal .wf-line {
+  height: 4px; width: 100%;
+  transform-origin: left center;
+}
+
+.wf-chevron {
+  position: absolute;
+  color: var(--chevron);
+  font-size: 52px; font-weight: 800; line-height: 1;
+}
+.wf-flow.vertical .wf-chevron { bottom: 6px; }
+.wf-flow.horizontal .wf-chevron { right: 6px; }
+
+/* 4 nodes → tighter type + shorter connectors so it fits 1920 */
+.wf-flow.dense .wf-node { padding: 40px 48px; }
+.wf-flow.dense .wf-label { font-size: 72px; }
+.wf-flow.dense .wf-sub { font-size: 32px; }
+.wf-flow.dense.vertical .wf-connector { height: 92px; }

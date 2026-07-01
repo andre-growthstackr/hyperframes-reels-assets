@@ -30,9 +30,16 @@ growthstackr-video-assets/
 │   ├── storyboards.manifest.json
 │   └── animations.manifest.json
 ├── components/                # reusable component code (HTML/CSS/JS), re-skinnable
-│   ├── metric-card/
-│   ├── claude-prompt-box/
-│   └── light-flare-transition/
+│   ├── split-50-50/           # home-base layout: B-roll top, talking head bottom
+│   ├── fullscreen-talking-head/ # full-frame head takeover (hook / CTA / personal)
+│   ├── caption-pill/          # the signature caption (centralised — don't recreate)
+│   ├── browser-frame/         # window chrome for screenshots / SaaS UI / dashboards
+│   ├── ui-highlight/          # spotlight overlay: dim + coral rect + label/arrow
+│   ├── workflow-diagram/      # source -> tool -> output node flow
+│   ├── metric-card/           # 2x2 / 2x3 big-number grid with count-up
+│   ├── claude-prompt-box/     # typed Claude Code prompt box
+│   ├── cta-scene/             # closer line + giant coral pill CTA
+│   └── light-flare-transition/ # signature light transition
 ├── animations/                # finished HyperFrames scenes + preview.mp4
 │   └── logo-reveal-coral/
 ├── storyboards/               # director plans + static key frames

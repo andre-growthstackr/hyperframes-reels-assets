@@ -1,0 +1,82 @@
+/* caption-pill — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --ink: #0a0a0a;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* mode-driven (set by animation.js) */
+  --bg: transparent;
+  --fg: var(--white);
+  --fg-muted: var(--offwhite);
+  --pill-bg: rgba(28, 31, 34, 0.85); /* --charcoal @ ~85% */
+  --pill-border: rgba(255, 255, 255, 0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+
+#root { position: absolute; inset: 0; }
+
+/* the pill overlays other layers — page background is transparent by default */
+.cp-stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* top is set from seamY by animation.js */
+  transform: translateY(-50%);
+}
+.cp-idle {
+  /* GSAP animates this layer's y for the subtle idle, so the stage's
+     centering transform is never touched. All pills overlap in one grid
+     cell (only the active chunk is visible) and stay horizontally centered. */
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.cp-idle > .cp-pill { grid-area: 1 / 1; }
+
+.cp-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 900px;
+  padding: 26px 52px;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  border-radius: 20px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+.cp-text {
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  text-align: center;
+}
+.cp-hl { color: var(--hl); }
+
+body.light .cp-pill {
+  --pill-bg: rgba(250, 250, 250, 0.9);
+  --pill-border: rgba(10, 10, 10, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+}

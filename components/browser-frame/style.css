@@ -1,0 +1,122 @@
+/* browser-frame — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --ink: #0a0a0a;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* mode-driven (set by animation.js) */
+  --bg: var(--canvas);
+  --fg: var(--white);
+  --fg-muted: var(--offwhite);
+  --chrome-bg: var(--charcoal);
+  --chrome-border: var(--slate);
+  --dot: rgba(255, 255, 255, 0.22);
+  --address-bg: rgba(255, 255, 255, 0.06);
+  --content-bg: #0b0c0e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+
+#root { position: absolute; inset: 0; }
+.backdrop {
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 80% at 50% 0%, #0b0c0e 0%, var(--bg) 60%);
+}
+body.light .backdrop {
+  background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--cream) 60%);
+}
+
+.bf-window {
+  position: absolute; inset: 0;
+  margin: auto;
+  width: 912px;
+  height: 1180px;
+  display: flex; flex-direction: column;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--chrome-bg);
+  border: 1px solid var(--chrome-border);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+  z-index: 3;
+}
+
+.bf-chrome {
+  flex: none;
+  height: 88px;
+  display: flex; align-items: center; gap: 28px;
+  padding: 0 32px;
+  background: var(--chrome-bg);
+  border-bottom: 1px solid var(--chrome-border);
+}
+.bf-lights { display: flex; gap: 16px; flex: none; }
+.bf-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--dot);
+}
+
+.bf-address {
+  flex: 1;
+  display: flex; align-items: center; gap: 16px;
+  height: 52px; padding: 0 28px;
+  border-radius: 26px;
+  background: var(--address-bg);
+}
+/* the ONE coral accent — a tiny secure/active indicator */
+.bf-secure {
+  flex: none;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--coral);
+  box-shadow: 0 0 14px var(--coral);
+}
+.bf-url {
+  font-size: 30px; font-weight: 500;
+  color: var(--fg-muted); opacity: 0.72;
+  letter-spacing: -0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bf-title {
+  flex: none;
+  font-size: 28px; font-weight: 500;
+  color: var(--fg-muted); opacity: 0.55;
+  white-space: nowrap;
+}
+.bf-title:empty { display: none; }
+
+.bf-content {
+  flex: 1; position: relative; overflow: hidden;
+  background: var(--content-bg);
+}
+.bf-image {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  display: none;
+}
+.bf-content.has-image .bf-image { display: block; }
+.bf-content.has-image .bf-placeholder { display: none; }
+
+.bf-placeholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--content-bg);
+}
+.bf-placeholder-label {
+  font-size: 34px; font-weight: 500;
+  color: var(--fg-muted); opacity: 0.35;
+  letter-spacing: 0.02em;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="sv" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>CTA scene</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── PROPS — the skill edits this block per video (re-skin colours via frame.md) ── -->
+    <script>
+      window.CTA_SCENE_PROPS = {
+        mode: "dark", // "dark" | "light"
+        accentColor: "#ff5b49", // overrides --coral; the CTA pill colour (the single coral instance)
+        kicker: "", // optional small uppercase muted kicker at the top; "" hides it
+        closerLine: "Redo att börja?", // ≤ 5 words
+        closerAccentWord: "börja", // if it occurs in closerLine, that word renders in Instrument Serif italic WHITE (not coral)
+        ctaLabel: 'Kommentera "LEADS"', // the giant coral pill label
+      };
+    </script>
+
+    <div
+      id="root"
+      data-composition-id="cta-scene"
+      data-start="0"
+      data-duration="3.2"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="backdrop"></div>
+      <div class="cta-wrap clip" data-start="0" data-duration="3.2" data-track-index="3">
+        <div class="cta-kicker" id="cta-kicker"></div>
+        <h1 class="cta-closer" id="cta-closer"></h1>
+        <button class="cta-pill" id="cta-pill"></button>
+        <div class="cta-hairline" id="cta-hairline"></div>
+      </div>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

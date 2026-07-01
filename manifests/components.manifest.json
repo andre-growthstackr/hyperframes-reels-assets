@@ -37,6 +37,90 @@
       "reskinnable": false,
       "props": ["direction", "duration", "intensity"],
       "notes": "The signature transition. Soft warm sweep; the incoming shot is revealed at the flare's peak. Sync the peak to an SFX swoosh. 3-6 per short."
+    },
+    {
+      "id": "split-50-50",
+      "type": "component",
+      "name": "Split 50/50 (home-base layout)",
+      "path": "components/split-50-50/",
+      "preview": "components/split-50-50/preview.png",
+      "tags": ["layout", "split-screen", "scaffold", "home-base", "structure"],
+      "best_for": ["home-base layout", "talking-head + B-roll split", "scene scaffold"],
+      "reskinnable": true,
+      "props": ["mode", "topRatio", "topLabel", "headLabel", "showSeamHairline"],
+      "notes": "The home-base split scaffold: B-roll/graphics top (#topSlot), talking-head bottom (#headSlot), 1px seam hairline. Brand hook move — opens full-screen head, then the top panel slides down to form the split with a continuous Ken Burns push-in. Structure only; captions come from the separate caption-pill component."
+    },
+    {
+      "id": "fullscreen-talking-head",
+      "type": "component",
+      "name": "Fullscreen talking head",
+      "path": "components/fullscreen-talking-head/",
+      "preview": "components/fullscreen-talking-head/preview.png",
+      "tags": ["talking-head", "fullscreen", "hook", "cta", "footage"],
+      "best_for": ["hook beats", "CTA beats", "personal / emphasis beats"],
+      "reskinnable": true,
+      "props": ["mode", "kicker", "vignette"],
+      "notes": "Full-frame head takeover on track 0 for hooks/CTAs/personal beats. Quick fade + scale settle on entry, then a gentle continuous Ken Burns push-in so it's never frozen. Optional lower-third vignette for caption legibility and an optional coral-ticked kicker. Real footage replaces the #head placeholder at build time; no caption drawn here."
+    },
+    {
+      "id": "caption-pill",
+      "type": "component",
+      "name": "Caption pill (signature caption)",
+      "path": "components/caption-pill/",
+      "preview": "components/caption-pill/preview.png",
+      "tags": ["caption", "subtitle", "pill", "captions", "signature"],
+      "best_for": ["spoken-word captions", "the signature caption beat"],
+      "reskinnable": true,
+      "props": ["chunks", "seamY", "highlightColor", "mode"],
+      "notes": "The library's centralized caption — a dark charcoal pill with bold white Inter, 1-3 word chunks that pop in and swap in sync with speech at the seam; one word per chunk may be highlighted in the brighter coral #ff9382 for contrast. Track 8, transparent ground to overlay other layers. Other components must NOT recreate a caption. Never fabricate copy."
+    },
+    {
+      "id": "browser-frame",
+      "type": "component",
+      "name": "Browser frame (window chrome for screenshots)",
+      "path": "components/browser-frame/",
+      "preview": "components/browser-frame/preview.png",
+      "tags": ["browser", "window", "screenshot", "ui", "dashboard", "website", "chrome"],
+      "best_for": ["holding a SaaS UI / dashboard capture", "website showcase beats", "product screenshot reveals"],
+      "reskinnable": true,
+      "props": ["mode", "url", "title", "imageSrc", "accentColor"],
+      "notes": "Rounded browser window with muted traffic-light dots and a pill address bar; slides up + scales in, then a slow Ken Burns push-in on the content. imageSrc fills the content area (object-fit cover, top-anchored), empty falls back to a neutral placeholder. The single coral accent is the tiny secure dot in the address bar."
+    },
+    {
+      "id": "ui-highlight",
+      "type": "component",
+      "name": "UI highlight (spotlight overlay)",
+      "path": "components/ui-highlight/",
+      "preview": "components/ui-highlight/preview.png",
+      "tags": ["highlight", "spotlight", "focus", "ui", "callout", "overlay"],
+      "best_for": ["drawing attention to a UI element", "browser/screenshot callouts"],
+      "reskinnable": true,
+      "props": ["rect", "label", "dimOpacity", "accentColor", "showArrow"],
+      "notes": "Transparent overlay (track 6) that dims the frame with a scrim except a clear spotlight rect via the box-shadow-hole trick, outlines it in coral, pops in an optional label + arrow, then keeps the border breathing. rect is in 1080x1920 px. Coral border + arrow share the one accent."
+    },
+    {
+      "id": "workflow-diagram",
+      "type": "component",
+      "name": "Workflow diagram (source → tool → output)",
+      "path": "components/workflow-diagram/",
+      "preview": "components/workflow-diagram/preview.png",
+      "tags": ["workflow", "flow", "diagram", "pipeline", "process", "nodes"],
+      "best_for": ["where-the-data-flows beats", "tool/stack explainers", "source-to-output steps"],
+      "reskinnable": true,
+      "props": ["nodes", "heroIndex", "orientation", "accentColor", "mode"],
+      "notes": "Node-flow diagram (LinkedIn → Vayne → Spreadsheet); nodes stagger pop-in, connectors draw between them, coral accent on the hero (tool) node only. 2–4 nodes, vertical default or horizontal. Never fabricate node labels."
+    },
+    {
+      "id": "cta-scene",
+      "type": "component",
+      "name": "CTA scene (closer + giant coral pill)",
+      "path": "components/cta-scene/",
+      "preview": "components/cta-scene/preview.png",
+      "tags": ["cta", "closer", "pill", "button", "outro", "final"],
+      "best_for": ["final CTA / closer beats", "ending a short on a call to action"],
+      "reskinnable": true,
+      "props": ["closerLine", "closerAccentWord", "ctaLabel", "kicker", "accentColor", "mode"],
+      "notes": "Centered closer line (≤5 words) with one optional Instrument Serif italic WHITE accent word over a giant coral pill CTA (the frame's single coral instance) on a dark ground, plus a centered hairline; staggered reveal then pill overshoot then hairline draw, gentle push-in. Never fabricate copy."
     }
   ]
 }

@@ -1,0 +1,88 @@
+/* fullscreen-talking-head — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --ink: #0a0a0a;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* mode-driven (set by animation.js) */
+  --bg: var(--canvas);
+  --fg: var(--white);
+  --fg-muted: var(--offwhite);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { position: absolute; inset: 0; }
+
+.fth-stage {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+/* The footage slot — full 1080×1920. Placeholder styling only; real media replaces it. */
+.fth-head {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(120% 90% at 50% 38%, #17191c 0%, var(--bg) 62%);
+  transform-origin: 50% 42%; /* Ken Burns pivots slightly above centre, toward the face */
+  will-change: transform;
+}
+.fth-placeholder-label {
+  font-size: 40px; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--fg-muted); opacity: 0.28;
+}
+
+/* Soft dark gradient over the lower third — keeps a caption legible over the face. */
+.fth-vignette {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.28) 78%,
+    rgba(0, 0, 0, 0.62) 100%
+  );
+}
+.fth-vignette.hidden { display: none; }
+body.light .fth-vignette {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0.14) 78%,
+    rgba(0, 0, 0, 0.34) 100%
+  );
+}
+
+/* Optional tiny uppercase kicker top-left with a single coral tick. */
+.fth-kicker {
+  position: absolute; top: 96px; left: 84px;
+  display: none; align-items: center; gap: 18px;
+}
+.fth-kicker.show { display: flex; }
+.fth-tick {
+  width: 14px; height: 14px; border-radius: 999px;
+  background: var(--coral);
+  box-shadow: 0 0 18px rgba(255, 91, 73, 0.55);
+}
+.fth-kicker-text {
+  font-size: 30px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--fg);
+}

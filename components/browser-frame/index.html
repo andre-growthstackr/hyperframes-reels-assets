@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="sv" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Browser frame</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── PROPS — the skill edits this block per video (re-skin colours via frame.md) ── -->
+    <script>
+      window.BROWSER_FRAME_PROPS = {
+        mode: "dark", // "dark" | "light"
+        url: "app.growthstackr.io", // address-bar text (muted)
+        title: "", // optional window title beside the traffic lights
+        imageSrc: "", // screenshot / UI capture; empty → neutral placeholder
+        accentColor: "#ff5b49", // overrides --coral; the single secure-dot accent
+      };
+    </script>
+
+    <div
+      id="root"
+      data-composition-id="browser-frame"
+      data-start="0"
+      data-duration="3.5"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="backdrop"></div>
+      <div class="bf-window clip" data-start="0" data-duration="3.5" data-track-index="3">
+        <div class="bf-chrome">
+          <div class="bf-lights">
+            <span class="bf-dot"></span>
+            <span class="bf-dot"></span>
+            <span class="bf-dot"></span>
+          </div>
+          <div class="bf-address">
+            <span class="bf-secure"></span>
+            <span class="bf-url" id="bf-url"></span>
+          </div>
+          <div class="bf-title" id="bf-title"></div>
+        </div>
+        <div class="bf-content" id="bf-content">
+          <img class="bf-image" id="bf-image" alt="" />
+          <div class="bf-placeholder" id="bf-placeholder">
+            <div class="bf-placeholder-label">screenshot · UI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

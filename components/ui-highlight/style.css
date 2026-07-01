@@ -1,0 +1,77 @@
+/* ui-highlight — re-skin by overriding these vars from frame.md */
+:root {
+  --canvas: #050505;
+  --charcoal: #1c1f22;
+  --slate: #344054;
+  --offwhite: #f0f0f0;
+  --white: #ffffff;
+  --cream: #fafafa;
+  --ink: #0a0a0a;
+  --coral: #ff5b49;
+  --violet: #7f56d9;
+
+  /* driven by animation.js */
+  --fg: var(--white);
+  --fg-muted: var(--offwhite);
+  --dim: rgba(0, 0, 0, 0.62); /* scrim colour + opacity (set from dimOpacity) */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* OVERLAY — transparent page so it composites over the layer beneath. */
+html, body {
+  background: transparent;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; }
+
+#root { position: absolute; inset: 0; }
+.uh-stage { position: absolute; inset: 0; }
+
+/* The spotlight rectangle. The huge box-shadow spread paints the scrim
+   everywhere EXCEPT this rect — the "hole" that stays clear. */
+.uh-rect {
+  position: absolute;
+  border-radius: 16px;
+  box-shadow: 0 0 0 9999px var(--dim);
+  will-change: transform;
+}
+
+/* Coral outline drawn as a sibling so its opacity/scale can breathe
+   independently of the scrim-carrying rect. */
+.uh-border {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 4px solid var(--coral);
+  box-shadow: 0 0 28px rgba(255, 91, 73, 0.55);
+  will-change: transform, opacity;
+}
+
+.uh-label {
+  position: absolute;
+  padding: 16px 30px;
+  background: var(--charcoal);
+  color: var(--fg);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+.uh-arrow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  overflow: visible;
+  filter: drop-shadow(0 8px 24px rgba(255, 91, 73, 0.45));
+  will-change: opacity;
+}

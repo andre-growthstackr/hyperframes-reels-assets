@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Caption pill</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── PROPS — the skill edits this block per video (re-skin colours via frame.md) ── -->
+    <script>
+      window.CAPTION_PILL_PROPS = {
+        mode: "dark", // "dark" | "light"
+        seamY: 0.54, // 0–1 vertical position of the pill (0.54 = the seam)
+        highlightColor: "#ff9382", // brighter coral for ≥3:1 contrast on the dark pill (NOT #ff5b49)
+        // 1–3 word chunks that swap in sync with speech. start/dur in seconds.
+        // optional `hl` = a substring within `text` to colour with highlightColor.
+        chunks: [
+          { text: "Vi byggde", start: 0.0, dur: 0.7 },
+          { text: "en helt", start: 0.7, dur: 0.6 },
+          { text: "ny motor", start: 1.3, dur: 0.8, hl: "ny" },
+          { text: "som gör", start: 2.1, dur: 0.6 },
+          { text: "allt", start: 2.7, dur: 0.5 },
+          { text: "dubbelt så snabbt", start: 3.2, dur: 1.0, hl: "dubbelt" },
+        ],
+      };
+    </script>
+
+    <div
+      id="root"
+      data-composition-id="caption-pill"
+      data-start="0"
+      data-duration="4.2"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div class="cp-stage" id="cp-stage"></div>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

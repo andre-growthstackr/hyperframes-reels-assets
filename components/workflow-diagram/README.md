@@ -16,6 +16,7 @@ Edit `window.WORKFLOW_DIAGRAM_PROPS` in `index.html`:
 | prop          | type     | notes |
 | ------------- | -------- | ----- |
 | `mode`        | string   | `"dark"` (default) or `"light"` |
+| `ground`      | string   | scene background: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `accentColor` | string   | hex; overrides `--coral` for the hero node |
 | `heroIndex`   | number   | 0-based node that gets the coral accent (the tool/central node) |
 | `orientation` | string   | `"vertical"` (default, stacked top→bottom) or `"horizontal"` (row) |

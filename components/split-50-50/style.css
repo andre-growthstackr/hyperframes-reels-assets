@@ -20,6 +20,7 @@
   --head-bg: var(--ink);
   --seam-line: var(--slate);
   --split: 55%; /* set from topRatio by animation.js */
+  --ground-url: none; /* scene background image behind the top slot; set by animation.js from the `ground` prop */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,6 +54,10 @@ html, body {
   height: var(--split);
   background: radial-gradient(120% 90% at 50% 0%, #101215 0%, var(--top-bg) 62%);
   z-index: 2;
+}
+/* scene ground image (brand backgrounds) — replaces the gradient behind the top slot when set */
+.slot.top.has-ground {
+  background: var(--ground-url) center / cover no-repeat, var(--top-bg);
 }
 
 /* head: talking-head home base — dark placeholder block, filled at build time */

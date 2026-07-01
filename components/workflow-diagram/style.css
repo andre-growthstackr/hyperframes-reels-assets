@@ -18,6 +18,7 @@
   --node-border: var(--slate);
   --connector: var(--slate);
   --chevron: #667085; /* connector arrow — brighter than the hairline for legibility */
+  --ground-url: none; /* scene background image; set by animation.js from the `ground` prop */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,6 +39,10 @@ html, body {
 }
 body.light .backdrop {
   background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--cream) 60%);
+}
+/* scene ground image (brand backgrounds) — replaces the radial gradient when set */
+.backdrop.has-ground {
+  background: var(--ground-url) center / cover no-repeat, var(--bg);
 }
 
 .wf-wrap {

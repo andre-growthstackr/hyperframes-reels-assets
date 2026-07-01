@@ -14,6 +14,16 @@
     root.style.setProperty("--seam-line", "#e4e7ec");
   }
 
+  // ── scene ground (brand background image, behind the top slot) ──
+  const GROUNDS = { dark: "ground-dark.jpg", cream: "ground-cream.jpg", coral: "ground-coral.jpg" };
+  let ground = P.ground;
+  if (ground === undefined) ground = P.mode === "light" ? "cream" : "dark";
+  if (ground && ground !== "none" && GROUNDS[ground]) {
+    root.style.setProperty("--ground-url", `url("backgrounds/${GROUNDS[ground]}")`);
+    const bgEl = document.querySelector("#topSlot") || document.querySelector(".backdrop");
+    if (bgEl) bgEl.classList.add("has-ground");
+  }
+
   // ── split point (topRatio drives it) ──
   const ratio = typeof P.topRatio === "number" ? P.topRatio : 0.55;
   root.style.setProperty("--split", ratio * 100 + "%");

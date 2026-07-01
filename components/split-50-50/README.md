@@ -17,6 +17,7 @@ Edit `window.SPLIT_50_50_PROPS` in `index.html`:
 | prop               | type    | notes |
 | ------------------ | ------- | ----- |
 | `mode`             | string  | `"dark"` (default) or `"light"` |
+| `ground`           | string  | scene background behind the top slot: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `topRatio`         | number  | split point — top slot height as a fraction of the frame (default `0.55`) |
 | `topLabel`         | string  | faint placeholder inside the top B-roll / graphics slot |
 | `headLabel`        | string  | faint placeholder inside the talking-head slot |

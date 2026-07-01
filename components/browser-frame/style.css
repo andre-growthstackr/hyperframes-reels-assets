@@ -19,6 +19,7 @@
   --dot: rgba(255, 255, 255, 0.22);
   --address-bg: rgba(255, 255, 255, 0.06);
   --content-bg: #0b0c0e;
+  --ground-url: none; /* scene background image; set by animation.js from the `ground` prop */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,6 +40,10 @@ html, body {
 }
 body.light .backdrop {
   background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, var(--cream) 60%);
+}
+/* scene ground image (brand backgrounds) — replaces the radial gradient when set */
+.backdrop.has-ground {
+  background: var(--ground-url) center / cover no-repeat, var(--bg);
 }
 
 .bf-window {

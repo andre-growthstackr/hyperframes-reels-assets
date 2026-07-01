@@ -6,6 +6,16 @@
   if (P.mode === "light") document.body.classList.add("light");
   if (P.accentColor) root.style.setProperty("--coral", P.accentColor);
 
+  // ── scene ground (brand background image) ──
+  const GROUNDS = { dark: "ground-dark.jpg", cream: "ground-cream.jpg", coral: "ground-coral.jpg" };
+  let ground = P.ground;
+  if (ground === undefined) ground = P.mode === "light" ? "cream" : "dark";
+  if (ground && ground !== "none" && GROUNDS[ground]) {
+    root.style.setProperty("--ground-url", `url("backgrounds/${GROUNDS[ground]}")`);
+    const bgEl = document.querySelector(".backdrop") || document.body;
+    if (bgEl) bgEl.classList.add("has-ground");
+  }
+
   document.getElementById("pb-app").textContent = P.appName || "claude";
   document.getElementById("pb-cwd").textContent = P.cwd || "";
   document.getElementById("pb-send").textContent = "↵ send";

@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="sv" data-resolution="portrait">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920">
     <title>Workflow diagram</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Instrument+Serif:ital@1&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <!-- ── PROPS — the skill edits this block per video (re-skin colours via frame.md) ── -->
     <script>
       window.WORKFLOW_DIAGRAM_PROPS = {
         mode: "dark", // "dark" | "light"
+        ground: "dark", // scene background: "dark" | "cream" | "coral" | "none" (flat). Defaults to dark/cream by mode.
         accentColor: "#ff5b49", // overrides --coral; the hero node colour
         heroIndex: 1, // which node is the tool/central node (0-based)
         orientation: "vertical", // "vertical" (default, stacked) | "horizontal" (row)
@@ -28,17 +26,10 @@
       };
     </script>
 
-    <div
-      id="root"
-      data-composition-id="workflow-diagram"
-      data-start="0"
-      data-duration="3.0"
-      data-width="1080"
-      data-height="1920"
-    >
-      <div class="backdrop"></div>
-      <div class="wf-wrap clip" data-start="0" data-duration="3.0" data-track-index="3">
-        <div class="wf-flow" id="wf-flow"></div>
+    <div data-hf-id="hf-0k4x" id="root" data-composition-id="workflow-diagram" data-start="0" data-duration="3.0" data-width="1080" data-height="1920">
+      <div data-hf-id="hf-j1s6" class="backdrop"></div>
+      <div data-hf-id="hf-slko" class="wf-wrap clip" data-start="0" data-duration="3.0" data-track-index="3">
+        <div data-hf-id="hf-z8b2" class="wf-flow" id="wf-flow"></div>
       </div>
     </div>
 

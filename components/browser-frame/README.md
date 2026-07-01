@@ -17,6 +17,7 @@ Edit `window.BROWSER_FRAME_PROPS` in `index.html`:
 | prop          | type   | notes |
 | ------------- | ------ | ----- |
 | `mode`        | string | `"dark"` (default, lifted dark surface) or `"light"` (white window on cream) |
+| `ground`      | string | scene background behind the window: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `url`         | string | address-bar text; rendered muted |
 | `title`       | string | optional window title beside the traffic lights; hidden when empty |
 | `imageSrc`    | string | screenshot / UI capture; fills the content area (`object-fit: cover`, top-anchored). Empty → neutral `screenshot · UI` placeholder |

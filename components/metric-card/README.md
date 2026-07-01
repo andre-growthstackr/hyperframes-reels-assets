@@ -15,6 +15,7 @@ Edit `window.METRIC_CARD_PROPS` in `index.html`:
 | prop          | type     | notes |
 | ------------- | -------- | ----- |
 | `mode`        | string   | `"dark"` (default) or `"light"` |
+| `ground`      | string   | scene background: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `accentColor` | string   | hex; overrides `--coral` for the hero number |
 | `heroIndex`   | number   | 0-based cell that gets the coral accent |
 | `eyebrow`     | string   | small uppercase coral kicker |

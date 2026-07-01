@@ -15,6 +15,7 @@ Edit `window.PROMPT_BOX_PROPS` in `index.html`:
 | prop          | type   | notes |
 | ------------- | ------ | ----- |
 | `mode`        | string | `"dark"` (default) or `"light"` |
+| `ground`      | string | scene background: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `accentColor` | string | hex; overrides `--coral` (dot, caret, cursor, send pill) |
 | `appName`     | string | header label (default `"claude"`) |
 | `promptText`  | string | the text that types out, char by char |

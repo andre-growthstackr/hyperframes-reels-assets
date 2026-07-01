@@ -17,6 +17,16 @@
   }
   if (P.accentColor) root.style.setProperty("--coral", P.accentColor);
 
+  // ── scene ground (brand background image) ──
+  const GROUNDS = { dark: "ground-dark.jpg", cream: "ground-cream.jpg", coral: "ground-coral.jpg" };
+  let ground = P.ground;
+  if (ground === undefined) ground = P.mode === "light" ? "cream" : "dark";
+  if (ground && ground !== "none" && GROUNDS[ground]) {
+    root.style.setProperty("--ground-url", `url("backgrounds/${GROUNDS[ground]}")`);
+    const bgEl = document.querySelector(".backdrop") || document.body;
+    if (bgEl) bgEl.classList.add("has-ground");
+  }
+
   document.getElementById("bf-url").textContent = P.url || "";
   document.getElementById("bf-title").textContent = P.title || "";
 

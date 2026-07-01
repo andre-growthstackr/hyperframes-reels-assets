@@ -16,6 +16,7 @@ Edit `window.CTA_SCENE_PROPS` in `index.html`:
 | prop               | type   | notes |
 | ------------------ | ------ | ----- |
 | `mode`             | string | `"dark"` (default) or `"light"` |
+| `ground`           | string | scene background: `"dark"` default / `"cream"` (light) / `"coral"` (opt-in) / `"none"` flat |
 | `accentColor`      | string | hex; overrides `--coral` for the CTA pill (the single coral instance) |
 | `kicker`           | string | optional small uppercase muted kicker at the top; `""` hides it |
 | `closerLine`       | string | the closer, **≤ 5 words**. **Never fabricate** — use the script's real line |

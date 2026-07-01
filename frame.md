@@ -711,6 +711,26 @@ Coral rations to **one instance per frame** (pill, italic word, highlight, or CT
 Restraint law as the pack. Components may add local surface vars (`--box-bg`, `--cell-bg`,
 `--box-border`, …) derived from these; keep those local.
 
+## Scene grounds (brand background images)
+
+Scene-graphic components paint their full-frame background from one of three brand **grounds** —
+soft pixel-grid gradients that replace the flat `--bg`/radial fill:
+
+- **`ground-dark.jpg`** — near-black → black. The default for dark scenes.
+- **`ground-cream.jpg`** — warm off-white → tan. For light-mode scenes.
+- **`ground-coral.jpg`** — coral → black. **Opt-in only**, for a hero / CTA / emphasis scene —
+  coral fires once, deliberately (same Restraint law as the accent).
+
+Canonical copies live in `assets/backgrounds/`; each scene component also ships a local
+`backgrounds/` copy so a single pull is self-contained (Studio reserves `/assets/`, and snapshot/
+render serve the component dir as root — a local copy is the only path that resolves everywhere).
+Components expose a `ground` prop: `"dark" | "cream" | "coral" | "none"` (flat), defaulting to
+dark, or cream in light mode. The image is applied via `--ground-url` on the frame's background
+element (`.has-ground`), never on a card, the browser-window content, the caption pill, or the
+talking-head video. Overlay/video components (`caption-pill`, `ui-highlight`,
+`light-flare-transition`, `fullscreen-talking-head`) carry NO ground — they sit over whatever is
+beneath.
+
 ## Caption pill — the video signature (get this exactly right)
 - **Dark rounded pill:** charcoal `--charcoal` (#1c1f22) ~85% opacity, **bold white Inter**
   centered, corner radius ~16–20px, hugging padding.
